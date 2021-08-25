@@ -5,6 +5,9 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+var verification = require('./routes/verification');
+app.use('/verification', verification);
+
 app.use((req, res) => {
     res.status(404).send('404 Not Found.');
 });
