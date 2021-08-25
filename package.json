@@ -1,0 +1,17 @@
+{
+  "name": "my_nuk_api",
+  "version": "1.0.0",
+  "description": "A simple API for my_nuk Flutter APP.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "PurpleRed",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1",
+    "iconv-lite": "^0.6.3",
+    "request": "^2.88.2"
+  }
+}
