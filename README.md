@@ -18,3 +18,6 @@ A simple API for my_nuk Flutter APP.
   - 新增驗證登入路由(/verification)
   - 登入路由完成通道1(預計會有3個驗證通道)
   - 首次部署至Heroku
+
+- v0.1.1-beta (2021/08/28):
+  - enable CORS(跨來源資源共享)
