@@ -7,8 +7,14 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.set('views', './views'); // 要設定ejs相關東西需要在views資料夾中
+app.set('view engine', 'ejs');  // view engine 設定為 EJS
+
 var verification = require('./routes/verification');
 app.use('/verification', verification);
+
+var user = require('./routes/user');
+app.use('/user', user);
 
 app.use((req, res) => {
     res.status(404).send('404 Not Found.');
