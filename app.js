@@ -10,6 +10,9 @@ app.use(express.urlencoded({ extended: false }));
 var verification = require('./routes/verification');
 app.use('/verification', verification);
 
+let api = require('./routes/api');
+app.use('/api', api);
+
 app.use((req, res) => {
     res.status(404).send('404 Not Found.');
 });
