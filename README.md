@@ -8,10 +8,15 @@ My NUK API
 A simple API for my_nuk Flutter APP.
 
 ## 路由 | Routes
-- verification (驗證在APP上的登入資訊是否正確)
-- user (提供給使用者的所有功能)
-  - grades (查詢歷年學期成績和排名)
-  - schedule (查詢本學期課表)
+- /verification (驗證在APP上的登入資訊是否正確)
+- /api (取得json格式資料的路由)
+  - /grades (查詢歷年學期成績和排名)
+  - /courses (查詢本學期課表)
+  - /elearning1 (有關E平台1.0的所有項目)
+    - /handouts (教材分享)
+- /user (提供給使用者顯示的路由，跟api路由搭配)
+  - /grades
+  - /courses
 
 ## 版本歷程紀錄 | Version History
 - v0.1-beta (2021/08/25):
