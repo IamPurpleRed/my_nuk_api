@@ -1,9 +1,9 @@
-var express = require('express');
-var request = require('request');
-var iconv = require('iconv-lite');
-var cheerio = require('cheerio');
+let express = require('express');
+let request = require('request');
+let iconv = require('iconv-lite');
+let cheerio = require('cheerio');
 
-var router = express.Router();
+let router = express.Router();
 
 router.get('/', (req, res) => {
     let id = req.query.id;

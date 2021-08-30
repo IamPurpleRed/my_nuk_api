@@ -1,8 +1,8 @@
-var express = require('express');
+let express = require('express');
 
-var router = express.Router();
+let router = express.Router();
 
-var courses = require('./user/courses');
+let courses = require('./user/courses');
 router.use('/courses', courses);
 
 module.exports = router;

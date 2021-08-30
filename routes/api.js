@@ -2,8 +2,7 @@ let express = require('express');
 
 let router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('courses');
-});
+let courses = require('./api/courses');
+router.use('/courses', courses);
 
 module.exports = router;
