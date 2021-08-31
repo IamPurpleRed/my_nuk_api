@@ -118,16 +118,63 @@ router.get('/', (req, res) => {
 
         function formatData(data) {
             console.log(data);
-            let result = {
-                "1": [
-                    ['', '', 'CS-D521', 'CS-D521', 'CS-D521', '', '', '', '', '', '', '', '', '', ''],
-                    ['', '', '視窗程式設計', '視窗程式設計', '視窗程式設計', '', '', '', '', '', '', '', '', '', ''],
-                    ['', '', '蘇家輝', '蘇家輝', '蘇家輝', '', '', '', '', '', '', '', '', '', ''],
-                    ['', '', '工學院209', '工學院209', '工學院209', '', '', '', '', '', '', '', '', '', '']
-                ]
-            };
-
-            return result;
+            let test = data;
+            let result = Object();
+            let arr3D = new Array();
+            for(let i=1;i<6;i++){
+                arr3D[i] = new Array();
+                for(let j=0;j<4;j++){
+                    arr3D[i][j] = new Array();
+                    for(let k=0;k<15;k++){
+                        arr3D[i][j][k] = null;
+                    }
+                }
+            }
+            let dic = {
+                "B01":"第一綜合教室大樓",
+            　　"C01":"理工第一實驗大樓",
+            　　"C02":"理工第二實驗大樓",
+            　　"K01":"運動健康休閒大樓",
+            　　"L01":"圖書資訊大樓",
+            　　"L02":"法學大樓"
+            }
+            for(let a in test){
+                let courseDay = test[a][2].charAt(1);		//取出星期幾
+                let courseNum = test[a][2].split("_"); 		//取出節數   X:0 Y:5(中午) 所以原本第五節5之後都順延1
+                courseNum.shift();
+                for(let a in courseNum){
+                    if(courseNum[a]!="X" && courseNum[a] != "Y")
+                        courseNum[a] = Number(courseNum[a]);
+                    if(courseNum[a] > 4)
+                        courseNum[a]++;
+                    if(courseNum[a] == "X")
+                        courseNum[a] = 0;
+                    else if(courseNum[a] == "Y")
+                        courseNum[a] = 5;
+                }
+                let courseCode = test[a][0].slice(0,2) + "-" + test[a][0].slice(2,6);		//取出代碼(String)
+                let courseName = test[a][1].slice(6);		//取出課程名稱
+                let classroom = test[a][3].split("-");		//取出教室
+                if(classroom[1] != null)
+                    classroom = [dic[classroom[0]]]+classroom[1];
+                else
+                    classroom = "未定";
+                let professor = test[a][4];					//取出教授
+                
+                for(let i in courseNum){
+                    arr3D[courseDay][0][courseNum[i]] = courseCode;
+                    arr3D[courseDay][1][courseNum[i]] = courseName;
+                    arr3D[courseDay][2][courseNum[i]] = professor;
+                    arr3D[courseDay][3][courseNum[i]] = classroom;
+                }
+            }
+            result["1"] = arr3D[1];
+            result["2"] = arr3D[2];
+            result["3"] = arr3D[3];
+            result["4"] = arr3D[4];
+            result["5"] = arr3D[5];
+            
+                return result;
         }
     } else {
         fail('無效的通道', 'Invalid channel.');
