@@ -55,42 +55,79 @@ router.get('/', (req, res) => {
                 let result = iconv.decode(body, 'big-5');
                 let $ = cheerio.load(result);
 
-                /* 最終要送出的json */
-                let finalResult = {
-                    'status': 'success',
-                    'student': [],
-                    'grades': []
-                };
+
 
                 /* 學生資料 */
+                let student = [];
                 for (let i = 1; i < 5; i++) {
-                    let tmp = $('body > table:nth-child(1) > tbody > tr > td:nth-child(' + i + ')').text();
-                    finalResult.student.push(tmp.slice(3));
+                    let studentPos = $('body > table:nth-child(1) > tbody > tr > td:nth-child(' + i + ')').text();
+                    student.push(studentPos.slice(3));
                 }
             
                 /* 學生所有學期成績 迴圈會跑該學生所就讀的學期次 */
+                let grades = [];
                 for (let i = 1; i < $('font:contains("學期")').length; i++) {
-                    let strSemester = $('font:contains("學期"):eq(' + (i - 1) + ')').text();
-                    let semester = [parseInt(strSemester.slice(0, 3)), parseInt(strSemester.slice(8, 9))];
-                    let oneSemester = {
-                        'semester': semester,
-                        'subjects': []
-                    }; // 整學期的檔案
+                    /* semester */
+                    let semesterStr = $('font:contains("學期"):eq(' + (i - 1) + ')').text();
+                    let semester = [parseInt(semesterStr.slice(0, 3)), parseInt(semesterStr.slice(8, 9))];  // [學年度, 學期]
 
+                    /* subjects */
+                    let subjects = [];
                     let tablePos = 'body > table:nth-child(' + (i * 4 + 1) + ') > tbody';
                     for (let j = 2; $(tablePos + ' > tr:nth-child(' + j + ') > td:nth-child(2)').text() != ''; j++) {
                         let rowPos = tablePos + ' > tr:nth-child(' + j + ')';
                         let oneCourse = {
-                            'id': $(rowPos + ' > td:nth-child(1)').text(),
+                            'id': $(rowPos + ' > td:nth-child(1)').text().substring(0, 2) + '-' + $(rowPos + ' > td:nth-child(1)').text().substring(2),
                             'name': $(rowPos + ' > td:nth-child(2)').text(),
                             'credit': $(rowPos + ' > td:nth-child(3)').text(),
                             'score': $(rowPos + ' > td:nth-child(6)').text()
                         };
-                        oneSemester.subjects.push(oneCourse);
+                        subjects.push(oneCourse);
                     }
 
-                    finalResult.grades.push(oneSemester);
+                    /* stats */
+                    let statsPos = 'body > p:nth-child(' + (i * 4 + 2) + ')';
+                    let stats = {};
+                    if (i == $('font:contains("學期")').length - 1) {
+                        stats = {
+                            "allCredits": $(statsPos + ' > table:nth-child(1) > tbody > tr > td:nth-child(1) > b').text().substring(6),
+                            "earnedCredits": $(statsPos + ' > table:nth-child(1) > tbody > tr > td:nth-child(2) > b').text().substring(6),
+                            "avgScore": $(statsPos + ' > table:nth-child(1) > tbody > tr > td:nth-child(3) > b').text().substring(5),
+                            "ranking": $(statsPos + ' > table:nth-child(1) > tbody > tr > td:nth-child(4) > b').text().substring(13)
+                        };
+                    } else {
+                        stats = {
+                            "allCredits": $(statsPos + ' > table > tbody > tr > td:nth-child(1)').text().substring(6),
+                            "earnedCredits": $(statsPos + ' > table > tbody > tr > td:nth-child(2)').text().substring(6),
+                            "avgScore": $(statsPos + ' > table > tbody > tr > td:nth-child(3)').text().substring(5),
+                            "ranking": $(statsPos + ' > table > tbody > tr > td:nth-child(4)').text().substring(13)
+                        };
+                    }
+                    
+                    let oneSemester = {
+                        'semester': semester,
+                        'subjects': subjects,
+                        'stats': stats
+                    }; // 整學期的檔案
+
+                    grades.push(oneSemester);
                 }
+
+                let finalStatsPos = 'body > table:nth-child(' + ($('font:contains("學期")').length * 4) + ') > tbody > tr:nth-child(2)';
+                let finalStats = {
+                    "allCredits": $(finalStatsPos + ' > td:nth-child(1)').text().substring(9),
+                    "earnedCredits": $(finalStatsPos + ' > td:nth-child(2)').text().substring(8),
+                    "avgScore": $(finalStatsPos + ' > td:nth-child(3)').text().substring(7),
+                    "ranking": $(finalStatsPos + ' > td:nth-child(4)').text().substring(7)
+                };
+
+                /* 最終要送出的json */
+                let finalResult = {
+                    'status': 'success',
+                    'student': student,
+                    'grades': grades,
+                    'stats': finalStats
+                };
 
                 /* 輸出 */
                 showPage(JSON.stringify(finalResult, null, 2));
