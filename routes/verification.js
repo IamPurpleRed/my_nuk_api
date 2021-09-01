@@ -5,10 +5,10 @@ var cheerio = require('cheerio');
 
 var router = express.Router();
 
-router.get('/', (req, res) => {
-    let id = req.query.id;
-    let password = req.query.pwd;
-    let channel = req.query.channel;
+router.post('/', (req, res) => {
+    let id = req.body.id;
+    let password = req.body.pwd;
+    let channel = req.body.channel;
     let requestHeaders = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36',
         'Content-Type': 'application/x-www-form-urlencoded'
