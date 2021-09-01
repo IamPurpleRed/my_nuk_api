@@ -26,3 +26,6 @@ A simple API for my_nuk Flutter APP.
 
 - v0.1.1-beta (2021/08/28):
   - enable CORS(跨來源資源共享)
+
+- v0.1.2-beta (2021/09/01):
+  - /verification 現在使用POST方法取得
