@@ -7,270 +7,233 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <title>課表</title>
 
   <style>
-    th {
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
-      margin: auto 0px;
-    }
-
     td {
       text-align: center;
     }
 
-    table {
-      position: relative;
+    th {
+      margin: auto;
+      text-align: center;
     }
 
-    .display-weekend {
-      position: fixed;
-      right: 0px;
-      top: 50%;
-      z-index: 1;
+    .time {
+      text-align: center;
     }
 
+    .time>div {
+      padding: 15px 0px;
+      border: 2px solid aliceblue;
+    }
+
+    .header {
+      background-color: rgb(40, 106, 165);
+      border: 2px solid aliceblue;
+    }
+
+    .header>div {
+      width: 62px;
+      padding: 0px 15px;
+    }
+
+    .icon {
+      text-align: center;
+      color: wheat;
+      font-size: 50px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="table-responsive">
-      <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" class="bi bi-arrow-left-square-fill btn display-weekend btn-dark" style="font-size: 40px;"></button>
-      <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-          <button type="button" class="btn-close text-reset btn-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="g-0 col-2 bg-danger icon">
+        <i class="bi bi-calendar"></i>
+      </div>
+      <div class="g-0 col-10 header d-flex justify-content-around align-items-center">
+        <div>Mon.</div>
+        <div>Tue.</div>
+        <div>Wed.</div>
+        <div>Thu.</div>
+        <div>Fri.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="g-0 col-2 bg-primary time">
+        <div>
+          <h2>X</h2>
+          <p>07:05 ~ 07:55</p>
+        </div>
+        <div>
+          <h2>1</h2>
+          <p>08:05 ~ 08:55</p>
+        </div>
+        <div>
+          <h2>2</h2>
+          <p>09:05 ~ 09:55</p>
+        </div>
+        <div>
+          <h2>3</h2>
+          <p>10:10 ~ 11:00</p>
+        </div>
+        <div>
+          <h2>4</h2>
+          <p>11:10 ~ 12:00</p>
+        </div>
+        <div>
+          <h2>Y</h2>
+          <p>12:10 ~ 13:00</p>
+        </div>
+        <div>
+          <h2>5</h2>
+          <p>13:10 ~ 14:00</p>
+        </div>
+        <div>
+          <h2>6</h2>
+          <p>14:10 ~ 15:00</p>
+        </div>
+        <div>
+          <h2>7</h2>
+          <p>15:15 ~ 16:05</p>
+        </div>
+        <div>
+          <h2>8</h2>
+          <p>16:20 ~ 17:10</p>
+        </div>
+        <div>
+          <h2>9</h2>
+          <p>17:20 ~ 18:10</p>
+        </div>
+        <div>
+          <h2>10</h2>
+          <p>18:20 ~ 19:10</p>
+        </div>
+        <div>
+          <h2>11</h2>
+          <p>19:15 ~ 20:05</p>
+        </div>
+        <div>
+          <h2>12</h2>
+          <p>20:10 ~ 21:00</p>
+        </div>
+        <div>
+          <h2>13</h2>
+          <p>21:05 ~ 21:55</p>
         </div>
 
-        <table class="table table-dark table-hover table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Saturday</th>
-              <th scope="col">Sunday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>視窗程式設計</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-
       </div>
-      <table class="table table-dark table-hover table-bordered">
-        <thead>
+      <div class="g-0 col-10 bg-info schedule">
+        <table class="table">
           <tr>
-            <th scope="col"><i class="bi bi-journal-bookmark-fill" style="color: #dedddb; font-size: 40px;"></i></th>
-            <th scope="col schedule-week">Monday</th>
-            <th scope="col schedule-week">Tuesday</th>
-            <th scope="col schedule-week">Wednesday</th>
-            <th scope="col schedule-week">Thursday</th>
-            <th scope="col schedule-week">Friday</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">X<br><span class="text-info">07:05 ~ 07:55</span></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-          </tr>
-          <tr>
-            <th scope="row">1<br><span class="text-primary">08:05 ~ 08:55</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-          </tr>
-          <tr>
-            <th scope="row">2<br><span class="text-primary">09:05 ~ 09:55</span></th>
-
-            <td></td>
-            <td class="mx-auto">視窗程式設計<br>
-              <div>工學院209</div>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-          </tr>
-          <tr>
-            <th scope="row">3<br><span class="text-primary">10:10 ~ 11:00</span></th>
-
-            <td></td>
             <td>視窗程式設計</td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-          </tr>
-          <tr>
-            <th scope="row">4<br><span class="text-primary">11:10 ~ 12:00</span></th>
-
-            <td></td>
             <td>視窗程式設計</td>
-            <td></td>
-            <td></td>
             <td>視窗程式設計</td>
-
-          </tr>
-          <tr>
-            <th scope="row">Y<br><span class="text-warning">12:10 ~ 13:00</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>視窗程式設計</td>
-
-          </tr>
-          <tr>
-            <th scope="row">5<br><span class="text-primary">13:10 ~ 14:00</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>視窗程式設計</td>
-
           </tr>
           <tr>
-            <th scope="row">6<br><span class="text-primary">14:10 ~ 15:00</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope="row">7<br><span class="text-primary">15:15 ~ 16:05</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope="row">8<br><span class="text-primary">16:20 ~ 17:10</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope="row">9<br><span class="text-secondary">17:20 ~ 18:10</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope="row">10<br><span class="text-secondary">18:20 ~ 19:10</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope=" row">11<br><span class="text-secondary">19:15 ~ 20:05</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope="row">12<br><span class="text-secondary">20:10 ~ 21:00</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
           <tr>
-            <th scope="row">13<br><span class="text-secondary">21:05 ~ 21:55</span></th>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
           </tr>
-        </tbody>
-      </table>
-
+          <tr>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+          </tr>
+          <tr>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+          </tr>
+          <tr>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+            <td>視窗程式設計</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 
   <div>
-      <table id = "test">
-        <% for(let i=1;i<=15;i++){ %>
-          <tr>
-            <% for(let j=1;j<=7;j++){ %>
-              <% for(let k=1;k<=3;k++){ %>
-              <td id="<%= i+'-'+j+'-'+k %>">
-                <%= i+'-'+j+'-'+k %>
-              <% } %>
-            <% } %>
-            </td>
-          </tr><% } %>
-      </table>
+    <table id="test">
+      <% for(let i=1;i<=15;i++){ %>
+      <tr>
+        <% for(let j=1;j<=7;j++){ %>
+        <% for(let k=1;k<=3;k++){ %>
+        <td id="<%= i+'-'+j+'-'+k %>">
+          <%= i+'-'+j+'-'+k %>
+          <% } %>
+          <% } %>
+        </td>
+      </tr><% } %>
+    </table>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
