@@ -19,13 +19,16 @@ A simple API for my_nuk Flutter APP.
   - /courses
 
 ## 版本歷程紀錄 | Version History
-- v0.1-beta (2021/08/25):
+### v0.2-beta (2021/09/03):
+  - 新增API功能：取得E平台1.0每個課程的網址(/api/elearning1/href)
+
+### v0.1.2-beta (2021/09/01):
+  - /verification 現在使用POST方法取得
+
+### v0.1.1-beta (2021/08/28):
+  - enable CORS(跨來源資源共享)
+
+### v0.1-beta (2021/08/25):
   - 新增驗證登入路由(/verification)
   - 登入路由完成通道1(預計會有3個驗證通道)
   - 首次部署至Heroku
-
-- v0.1.1-beta (2021/08/28):
-  - enable CORS(跨來源資源共享)
-
-- v0.1.2-beta (2021/09/01):
-  - /verification 現在使用POST方法取得

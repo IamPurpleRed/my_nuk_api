@@ -1,6 +1,6 @@
 {
   "name": "my_nuk_api",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A simple API for my_nuk Flutter APP.",
   "main": "app.js",
   "scripts": {
