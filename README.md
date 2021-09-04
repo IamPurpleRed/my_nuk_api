@@ -19,6 +19,9 @@ A simple API for my_nuk Flutter APP.
   - /courses
 
 ## 版本歷程紀錄 | Version History
+### v0.2.1-beta (2021/09/04):
+  - 修正/api/elearning1/href路由的爬蟲語法，此漏洞將導致API回傳的結果均為fail
+  
 ### v0.2-beta (2021/09/03):
   - 新增API功能：取得E平台1.0每個課程的網址(/api/elearning1/href)
 
