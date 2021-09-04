@@ -2,7 +2,7 @@ let loginId = 'a1085524';
 axios.get("http://localhost:3000/api/courses",{
         params:{
             id:loginId,
-            channel:1
+            channel:2
         }
     })
     .then(function(response){
