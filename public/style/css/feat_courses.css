@@ -1,0 +1,86 @@
+.table {
+    margin-bottom: 0;
+}
+
+.table> :not(caption)>*>* {
+    padding: 0px;
+}
+
+td {
+    text-align: center;
+    height: 120px;
+    display: table-cell;
+    vertical-align: middle;
+    border: 2px solid #383837;
+    padding: 0px 4px;
+}
+
+@media screen and (max-width: 500px) {
+    td {
+        height: 135px;
+    }
+}
+
+.res-td>h5 {
+    font-weight: 900;
+}
+
+.res-td>p {
+    width: 60px;
+    height: 30%;
+    margin-bottom: 0px;
+}
+
+
+.time {
+    text-align: center;
+}
+
+.time>div {
+    padding: 15px 0px;
+    border: 2px solid #383837;
+}
+
+.header {
+    background-color: rgb(40, 106, 165);
+    border-bottom: 2px solid #383837;
+    display: flex;
+}
+
+.header>div {
+    width: 62.5px;
+    height: 100%;
+    border: 2px solid #383837;
+    text-align: center;
+    padding: 20px 0px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.weekend-header>div {
+    width: 50%;
+}
+
+.schedule {
+    background-color: aliceblue;
+}
+
+.icon {
+    text-align: center;
+    font-size: 50px;
+}
+
+.btn-scroll2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.bi {
+    font-size: 50px;
+    color: red;
+}
+
+.calendar {
+    color: whitesmoke;
+}
