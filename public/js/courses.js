@@ -1,4 +1,24 @@
 let loginId = 'a1085524';
+let btn = document.getElementById("idForButton");
+let weekdays = document.getElementById("courseForWeek");
+let weekends = document.getElementById("courseForWeekend");
+let weekends_title = document.getElementById("weekend");
+let weekdays_title = document.getElementById("weekday");
+let isWeekDay = true;
+function tran(){
+    if(isWeekDay){
+        weekdays.style.opacity = 0;
+        weekdays_title.style.opacity = 0;
+        weekends.style.opacity = 1;
+        weekends_title.style.opacity = 1;
+    }else{
+        weekdays.style.opacity = 1;
+        weekdays_title.style.opacity = 1;
+        weekends.style.opacity = 0;
+        weekends_title.style.opacity = 0;
+    }
+    isWeekDay = !isWeekDay;
+}
 axios.get("http://localhost:3000/api/courses",{
         params:{
             id:loginId,
@@ -19,19 +39,16 @@ axios.get("http://localhost:3000/api/courses",{
                    course++;                //JSON課程陣列從0開始 介面表格從1開始 因此加1
                    temp = document.getElementById(course+'-'+i+'-1');
                    temp.textContent = info[i][1][j];
-                   temp = document.getElementById(course+'-'+i+'-3');
-                   temp.textContent = info[i][2][j];
+                //    temp = document.getElementById(course+'-'+i+'-3');
+                //    temp.textContent = info[i][2][j];
                    temp = document.getElementById(course+'-'+i+'-2');
                    temp.textContent = info[i][3][j];
                }
             }
-            delete temp;
+            delete temp;         
         }
-        
     } else{
         console.log("error");
     }
 });
-//格式: 1-1-1: Monday First-Course 課程名稱
-//          2: Monday Second-Course 教室地點
-//          3: Monday Third-Course 教授名稱
+
