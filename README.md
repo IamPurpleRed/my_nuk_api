@@ -13,12 +13,16 @@ A simple API for my_nuk Flutter APP.
   - /grades (查詢歷年學期成績和排名)
   - /courses (查詢本學期課表)
   - /elearning1 (有關E平台1.0的所有項目)
+    - /href (使用者所有課程的網址)
     - /handouts (教材分享)
 - /user (提供給使用者顯示的路由，跟api路由搭配)
   - /grades
   - /courses
 
 ## 版本歷程紀錄 | Version History
+### v0.3-beta (2021/09/05):
+  - 新增API功能：取得E平台1.0指定課程的所有講義網址(/api/elearning1/handouts)
+
 ### v0.2.1-beta (2021/09/04):
   - 修正/api/elearning1/href路由的爬蟲語法，此漏洞將導致API回傳的結果均為fail
   
