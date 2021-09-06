@@ -14,18 +14,34 @@ body {
 
 .toggleForWeekend {
   position: fixed;
-  bottom: 10px;
+  bottom: 25px;
   right: 10px;
   z-index: 100;
-  background-color: #383837;
-  border-radius: 100%;
-  border-color: cadetblue;
-  background-color: lightblue;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.btn-effect {
+  display: inline-block;
+  cursor: pointer;
+  transition: all .5s ease;
+  background-color: rgb(166, 187, 206);
+  /* background-color: #b0b7b4; */
+  box-shadow: 0px 50px 20px 5px rgba(24, 22, 22, 0.5);
+}
+
+.btn-effect:active {
+  /* background-color: #2825e0; */
+  background-color: transparent;
 }
 
 .bi-arrow-left-right {
-  color: cadetblue;
+  color: rgb(201, 224, 224);
   font-size: 30px;
+}
+
+.transprent {
+  background-color: transparent;
 }
 
 table {
@@ -41,7 +57,7 @@ table {
 }
 
 td {
-  width: 140px;
+  width: 160px;
   height: 70px;
   text-align: center;
   border: #383837 1px solid;
@@ -59,6 +75,12 @@ td {
 .time h6 {
   font-weight: bold;
   font-size: 20px;
+  color: #3a584e;
+}
+
+.time p {
+  font-weight: bold;
+  color: rgb(87, 104, 119);
 }
 
 #containerForWeek {
@@ -81,10 +103,10 @@ td {
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
-  width: 700px;
+  width: 800px;
   height: 70px;
   z-index: 3;
-  color: #333;
+  color: #3a584e;
   font-size: 28px;
   font-weight: bold;
   position: relative;
@@ -94,22 +116,21 @@ td {
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
-  width: 280px;
+  width: 320px;
   z-index: 2;
-  color: #333;
+  color: #3a584e;
   font-size: 28px;
   font-weight: bold;
   position: absolute;
   top: 0;
-  left: 61px;
+  left: 63px;
 }
 
 #courseForWeek {
-
   position: relative;
   display: table-cell;
   vertical-align: middle;
-  width: 700px;
+  width: 800px;
   font-family: "源泉圓體";
   font-weight: 500;
   background-color: #ebebeb;
@@ -118,10 +139,10 @@ td {
 #courseForWeekend {
   position: absolute;
   top: 70px;
-  left: 61px;
+  left: 63px;
   display: table-cell;
   vertical-align: middle;
-  width: 280px;
+  width: 320px;
   font-family: "源泉圓體";
   font-weight: 500;
   background-color: #ebebeb;
@@ -129,6 +150,11 @@ td {
 
 .course tr td {
   height: 137px;
+}
+
+.course p {
+  background-color: rgb(125, 152, 177);
+  color: #eaeaea;
 }
 
 @media screen and (min-width: 468px) {
