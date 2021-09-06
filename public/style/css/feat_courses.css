@@ -1,121 +1,138 @@
 * {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.toggleForWeekend {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  background-color: #383837;
+  border-radius: 100%;
+  border-color: cadetblue;
+  background-color: lightblue;
+}
+
+.bi-arrow-left-right {
+  color: cadetblue;
+  font-size: 30px;
+}
+
+table {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+td {
+  width: 140px;
+  height: 70px;
+  text-align: center;
+  border: #383837 1px solid;
+  margin: 0;
+  padding: 0;
+}
+
+#time {
+  font-family: 'Comic Sans MS', cursive;
+  z-index: 3;
+  width: 100px;
+  height: 500px;
+}
+
+.time h6 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#containerForWeek {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
+
+#containerForWeekend {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
+
+#weekday {
+  font-family: 'Comic Sans MS', cursive;
+  display: table-cell;
+  vertical-align: middle;
+  width: 700px;
+  height: 70px;
+  z-index: 3;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  position: relative;
+}
+
+#weekend {
+  font-family: 'Comic Sans MS', cursive;
+  display: table-cell;
+  vertical-align: middle;
+  width: 280px;
+  z-index: 2;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 61px;
+}
+
+#courseForWeek {
+
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  width: 700px;
+  font-family: "源泉圓體";
+  font-weight: 500;
+  background-color: #ebebeb;
+}
+
+#courseForWeekend {
+  position: absolute;
+  top: 70px;
+  left: 61px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 280px;
+  font-family: "源泉圓體";
+  font-weight: 500;
+  background-color: #ebebeb;
+}
+
+.course tr td {
+  height: 137px;
+}
+
+@media screen and (min-width: 468px) {
+  .course tr td {
+    height: 113px;
   }
-  
-  body {
-    display: flex;
-    position: relative;
-  }
-  
-  .toggleForWeekend{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 100;
-    background-color: #383837;
-    border-radius: 100%;
-    border-color: cadetblue;
-    background-color: lightblue;
-  }
-  .bi-arrow-left-right{
-    color: cadetblue;
-    font-size: 30px;
-  }
-  
-  table {
-    margin: 0;
-    padding: 0;
-    border-spacing: 0;
-    border-collapse: collapse;
-  }
-  .table{
-    margin-bottom: 0;
-  }
-  
-  td {
-    width: 100px;
-    height: 70px;
-    text-align: center;
-    border: #383837 1px solid;
-    margin: 0;
-    padding: 0;
-  }
-  
-  #time {
-    font-family: 'Comic Sans MS', cursive;
-    left: 0;
-    z-index: 3;
-    width: 100px;
-    height: 500px;
-  }
-  .time h6{
-    font-weight: bold;
-    font-size: 20px;
-  }
-  
-  #containerForWeek {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  #containerForWeekend {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #weekday {
-    font-family: 'Comic Sans MS', cursive;
-    display: table-cell;
-    vertical-align: middle;
-    width: 500px;
-    height: 70px;
-    z-index: 2;
-    color: #333;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  #weekend {
-    font-family: 'Comic Sans MS', cursive;
-    display: table-cell;
-    vertical-align: middle;
-    width: 200px;
-    z-index: 3;
-    color: #333;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  #courseForWeek {
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-    width: 500px;
-    font-family: "源泉圓體";
-    font-weight: 500;
-    background-color: #ebebeb;
-  }
-  #courseForWeekend {
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-    width: 500px;
-    font-family: "源泉圓體";
-    font-weight: 500;
-    background-color: #ebebeb;
-  }
-  .course tr td{
-    height: 137px;
-  }
-  @media screen and (min-width: 468px ){
-    .course tr td{
-      height: 113px;
-    }
-  }
-  
+}
