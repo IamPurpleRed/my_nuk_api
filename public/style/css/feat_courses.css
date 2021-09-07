@@ -26,21 +26,29 @@
 .btn-effect {
   display: inline-block;
   cursor: pointer;
-  transition: all .5s ease;
+  transition: all 1s ease;
   background-color: #FFC107;
   /* background-color: #b0b7b4; */
   box-shadow: 1px 1px 10px 1px rgba(138, 136, 136, 0.5),
-    -1px -1px 10px 1px rgba(138, 136, 136, 0.5);
+    -1px -1px 10px 1px rgba(138, 136, 136, 0.5), 0px 3px 10px 1px dimgray;
 }
 
 .btn-effect:active {
   /* background-color: #2825e0; */
+  color: #FFC107;
   background-color: transparent;
 }
 
-.bi-arrow-left-right {
+.exchange {
+  display: inline-block;
+  padding: 4px;
   color: white;
-  font-size: 30px;
+  font-size: 40px;
+}
+
+.calendar {
+  font-size: 40px;
+  color: #2f6b5b;
 }
 
 table {
@@ -129,11 +137,11 @@ td {
 #weekend {
   position: absolute;
   top: 0;
-  left: 88px;
+  left: 64px;
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
-  width: 320px;
+  width: 319px;
   height: 70px;
   z-index: 2;
   color: #FFC107;
@@ -155,7 +163,7 @@ td {
 #courseForWeekend {
   position: absolute;
   top: 70px;
-  left: 88px;
+  left: 63px;
   display: table-cell;
   z-index: 2;
   vertical-align: middle;
