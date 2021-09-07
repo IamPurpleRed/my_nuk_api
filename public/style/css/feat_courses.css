@@ -6,17 +6,19 @@
   box-sizing: border-box;
 }
 
-body {
+
+.wrap {
   display: flex;
-  position: relative;
   scroll-behavior: smooth;
+  width: 800px;
 }
+
 
 .toggleForWeekend {
   position: fixed;
-  bottom: 25px;
-  right: 10px;
-  z-index: 100;
+  bottom: 15px;
+  right: 15px;
+  z-index: 6;
   border-radius: 50%;
   background: transparent;
 }
@@ -25,9 +27,10 @@ body {
   display: inline-block;
   cursor: pointer;
   transition: all .5s ease;
-  background-color: rgb(166, 187, 206);
+  background-color: #FFC107;
   /* background-color: #b0b7b4; */
-  box-shadow: 0px 50px 20px 5px rgba(24, 22, 22, 0.5);
+  box-shadow: 1px 1px 10px 1px rgba(138, 136, 136, 0.5),
+    -1px -1px 10px 1px rgba(138, 136, 136, 0.5);
 }
 
 .btn-effect:active {
@@ -36,12 +39,8 @@ body {
 }
 
 .bi-arrow-left-right {
-  color: rgb(201, 224, 224);
+  color: white;
   font-size: 30px;
-}
-
-.transprent {
-  background-color: transparent;
 }
 
 table {
@@ -66,21 +65,35 @@ td {
 }
 
 #time {
+  position: sticky;
+  left: 0;
   font-family: 'Comic Sans MS', cursive;
-  z-index: 3;
+  z-index: 10;
   width: 100px;
-  height: 500px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #eaeaea;
+}
+
+.time .icon {
+  height: 70px;
+  background-color: white;
+}
+
+.time tr {
+  height: 137px;
 }
 
 .time h6 {
   font-weight: bold;
-  font-size: 20px;
-  color: #3a584e;
+  font-size: 25px;
+  color: #FFC107;
 }
 
 .time p {
   font-weight: bold;
   color: rgb(87, 104, 119);
+  margin-bottom: 0;
 }
 
 #containerForWeek {
@@ -100,36 +113,39 @@ td {
 }
 
 #weekday {
+  position: sticky;
+  top: 0;
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
   width: 800px;
   height: 70px;
   z-index: 3;
-  color: #3a584e;
+  color: #FFC107;
   font-size: 28px;
   font-weight: bold;
-  position: relative;
 }
 
 #weekend {
+  position: absolute;
+  top: 0;
+  left: 88px;
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
   width: 320px;
+  height: 70px;
   z-index: 2;
-  color: #3a584e;
+  color: #FFC107;
   font-size: 28px;
   font-weight: bold;
-  position: absolute;
-  top: 0;
-  left: 63px;
 }
 
 #courseForWeek {
   position: relative;
   display: table-cell;
   vertical-align: middle;
+  z-index: 3;
   width: 800px;
   font-family: "源泉圓體";
   font-weight: 500;
@@ -139,8 +155,9 @@ td {
 #courseForWeekend {
   position: absolute;
   top: 70px;
-  left: 63px;
+  left: 88px;
   display: table-cell;
+  z-index: 2;
   vertical-align: middle;
   width: 320px;
   font-family: "源泉圓體";
@@ -152,9 +169,24 @@ td {
   height: 137px;
 }
 
+.course h5 {
+  color: #383837;
+}
+
+.course h5:hover {
+  color: darkgray;
+  background-color: #eaeaea;
+}
+
 .course p {
   background-color: rgb(125, 152, 177);
   color: #eaeaea;
+  border-radius: 20px;
+}
+
+.course p:hover {
+  color: #383837;
+  background-color: #eaeaea;
 }
 
 @media screen and (min-width: 468px) {
