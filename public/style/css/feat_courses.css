@@ -1,0 +1,228 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.effect {
+  opacity: 1;
+  transition: opacity 1s
+}
+
+.toggleForWeekend {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 6;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.btn-effect {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 1s ease;
+  background-color: #FFC107;
+  /* background-color: #b0b7b4; */
+  box-shadow: 1px 1px 10px 1px rgba(138, 136, 136, 0.5),
+    -1px -1px 10px 1px rgba(138, 136, 136, 0.5), 0px 3px 10px 1px dimgray;
+}
+
+.btn-effect:active {
+  /* background-color: #2825e0; */
+  color: #FFC107;
+  background-color: transparent;
+}
+
+.exchange {
+  display: inline-block;
+  padding: 4px;
+  color: white;
+  font-size: 40px;
+}
+
+.calendar {
+  font-size: 40px;
+  color: #2f6b5b;
+}
+
+table {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+td {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#time {
+  position: sticky;
+  left: 0;
+  font-family: 'Comic Sans MS', cursive;
+  z-index: 50;
+  width: 60px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #eaeaea;
+}
+
+.time .icon {
+  height: 70px;
+  background-color: white;
+  border: 1px solid darkgrey;
+}
+
+.time tr {
+  height: 137px;
+  border: 1px solid darkgrey;
+}
+
+.time h6 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #FFC107;
+}
+
+.time p {
+  font-weight: bold;
+  color: rgb(87, 104, 119);
+  margin-bottom: 0;
+}
+
+#containerForWeek {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
+
+#containerForWeekend {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
+
+#weekday {
+  font-family: 'Comic Sans MS', cursive;
+  display: table-cell;
+  vertical-align: middle;
+  width: 550px;
+  position: absolute;
+  top: 0;
+  left: 60px;
+  z-index: 4;
+  color: #FFC107;
+  font-size: 28px;
+  font-weight: bold;
+  border-right: 1px solid darkgrey;
+  border-top: 1px solid darkgrey;
+}
+
+#weekday tr td {
+  padding: 4px;
+  width: 110px;
+  height: 70px;
+  border-bottom: 1px solid darkgrey;
+}
+
+#weekend {
+  position: absolute;
+  top: 0;
+  left: 63px;
+  font-family: 'Comic Sans MS', cursive;
+  display: table-cell;
+  vertical-align: middle;
+  width: 320px;
+  height: 70px;
+  z-index: 2;
+  color: #FFC107;
+  font-size: 28px;
+  font-weight: bold;
+  border-right: 1px solid darkgrey;
+  border-top: 1px solid darkgrey;
+}
+
+#weekend tr td {
+  padding: 4px;
+  width: 160px;
+  height: 70px;
+  border-bottom: 1px solid darkgrey;
+}
+
+#courseForWeek {
+  position: absolute;
+  top: 70px;
+  left: 60px;
+  display: table-cell;
+  vertical-align: middle;
+  z-index: 3;
+  width: 550px;
+  font-family: "源泉圓體";
+  font-weight: 500;
+  background-color: #ebebeb;
+  border-right: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
+}
+
+#courseForWeekend {
+  position: absolute;
+  top: 70px;
+  left: 60px;
+  display: table-cell;
+  z-index: 2;
+  vertical-align: middle;
+  width: 323px;
+  font-family: "源泉圓體";
+  font-weight: 500;
+  background-color: #ebebeb;
+  border-right: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
+}
+
+.course tr td {
+  width: 110px;
+  height: 137px;
+  padding: 4px;
+}
+
+.course h5 {
+  color: #383837;
+  font-size: 14px;
+}
+
+.course h5:hover {
+  color: darkgray;
+  background-color: #eaeaea;
+}
+
+.course p {
+  background-color: rgb(125, 152, 177);
+  color: #eaeaea;
+  border-radius: 20px;
+  margin-bottom: 0;
+}
+
+.course p:hover {
+  color: #383837;
+  background-color: #eaeaea;
+}
+
+.styleForWeekend tr td {
+  width: 160px;
+  padding: 4px;
+  height: 137px;
+}

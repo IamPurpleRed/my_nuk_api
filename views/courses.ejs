@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link rel="stylesheet" href="../../style/css/courses.css">
+  <link rel="stylesheet" href="../../style/css/feat_courses.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+  <title>課表</title>
+
+</head>
+
+<body>
+  <button class="toggleForWeekend btn-effect" id="idForButton"><span class="material-icons-round exchange">
+      swap_horiz
+    </span>
+  </button>
+
+
+  <div class="wrap" id="Wrap">
+    <table class="table time" id="time">
+      <tr class="icon">
+        <td><span class="material-icons-round calendar">
+            calendar_today
+          </span></td>
+      </tr>
+      <tr>
+        <td>
+          <h6>X</h6>
+          <p>07:05 <br> ~ <br> 07:55</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>1</h6>
+          <p>08:05 <br> ~ <br> 08:55</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>2</h6>
+          <p>09:05 <br> ~ <br> 09:55</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>3</h6>
+          <p>10:10<br> ~ <br>11:00</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>4</h6>
+          <p>11:10<br> ~ <br>12:00</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>Y</h6>
+          <p>12:10<br> ~ <br>13:00</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>5</h6>
+          <p>13:10<br> ~ <br>14:00</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>6</h6>
+          <p>14:10<br> ~ <br>15:00</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>7</h6>
+          <p>15:15<br> ~ <br>16:05</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>8</h6>
+          <p>16:20<br> ~ <br>17:10</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>9</h6>
+          <p>17:20<br> ~ <br>18:10</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>10</h6>
+          <p>18:20<br> ~ <br>19:10</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>11</h6>
+          <p>19:15<br> ~ <br>20:05</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>12</h6>
+          <p>20:10<br> ~ <br>21:00</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h6>13</h6>
+          <p>21:05<br> ~ <br>21:55</p>
+        </td>
+      </tr>
+    </table>
+    <div id="containerForWeek">
+      <table class="table weekday effect" id="weekday">
+        <tr>
+          <td>Mon.</td>
+          <td>Tue.</td>
+          <td>Wed.</td>
+          <td>Thu.</td>
+          <td>Fri.</td>
+        </tr>
+      </table>
+      <table class="table course effect" id="courseForWeek">
+        <% for(let i=1;i<16;i++){ %>
+        <tr>
+          <% for(let j=1;j<6;j++){ %>
+          <td>
+            <h5 id="<%= i+'-'+j+'-1' %>"></h5>
+            <p id="<%= i+'-'+j+'-2' %>"></p>
+          </td>
+          <% } %>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+    <div id="containerForWeekend">
+      <table class="table weekend effect" id="weekend" style="opacity: 0">
+        <tr>
+          <td>Sat.</td>
+          <td>Sun.</td>
+        </tr>
+      </table>
+      <table class="table course styleForWeekend effect" style="opacity: 0" id="courseForWeekend">
+        <% for(let i=1;i<16;i++){ %>
+        <tr>
+          <% for(let j=6;j<8;j++){ %>
+          <td>
+            <h5 id="<%= i+'-'+j+'-1' %>"></h5>
+            <p id="<%= i+'-'+j+'-2' %>"></p>
+          </td>
+          <% } %>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../../js/courses.js"></script>
+</body>
+
+</html>
