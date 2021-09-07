@@ -7,25 +7,27 @@ let weekends = document.getElementById("courseForWeekend");
 let weekends_title = document.getElementById("weekend");
 let weekdays_title = document.getElementById("weekday");
 let isWeekDay = true;
-let widthOfWrap = document.getElementById("Wrap");
-btn.addEventListener("click",tran);
+btn.addEventListener("click", tran);
+
 function tran() {
     if (isWeekDay) {
         weekdays.style.opacity = 0;
         weekdays_title.style.opacity = 0;
         weekends.style.opacity = 1;
         weekends_title.style.opacity = 1;
-        widthOfWrap.style.width = 383 + "px";
         weekends_title.style.zIndex = 5;
         weekends.style.zIndex = 4;
+        weekdays_title.style.display = "none";
+        weekdays.style.display = "none";
     } else {
         weekdays.style.opacity = 1;
         weekdays_title.style.opacity = 1;
         weekends.style.opacity = 0;
         weekends_title.style.opacity = 0;
-        widthOfWrap.style.width = 800 + "px";
-        weekends_title.style.zIndex = 2;
+        weekends_title.style.zIndex = 3;
         weekends.style.zIndex = 2;
+        weekdays_title.style.display = "block";
+        weekdays.style.display = "block";
     }
     isWeekDay = !isWeekDay;
 }

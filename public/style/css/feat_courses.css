@@ -6,14 +6,6 @@
   box-sizing: border-box;
 }
 
-
-.wrap {
-  display: flex;
-  scroll-behavior: smooth;
-  width: 800px;
-}
-
-
 .toggleForWeekend {
   position: fixed;
   bottom: 15px;
@@ -64,10 +56,7 @@ table {
 }
 
 td {
-  width: 160px;
-  height: 70px;
   text-align: center;
-  border: #383837 1px solid;
   margin: 0;
   padding: 0;
 }
@@ -76,8 +65,8 @@ td {
   position: sticky;
   left: 0;
   font-family: 'Comic Sans MS', cursive;
-  z-index: 10;
-  width: 100px;
+  z-index: 50;
+  width: 60px;
   display: table-cell;
   vertical-align: middle;
   background-color: #eaeaea;
@@ -86,10 +75,12 @@ td {
 .time .icon {
   height: 70px;
   background-color: white;
+  border: 1px solid darkgrey;
 }
 
 .time tr {
   height: 137px;
+  border: 1px solid darkgrey;
 }
 
 .time h6 {
@@ -121,64 +112,91 @@ td {
 }
 
 #weekday {
-  position: sticky;
-  top: 0;
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
-  width: 800px;
-  height: 70px;
-  z-index: 3;
+  width: 550px;
+  position: absolute;
+  top: 0;
+  left: 60px;
+  z-index: 4;
   color: #FFC107;
   font-size: 28px;
   font-weight: bold;
+  border-right: 1px solid darkgrey;
+  border-top: 1px solid darkgrey;
+}
+
+#weekday tr td {
+  padding: 4px;
+  width: 110px;
+  height: 70px;
+  border-bottom: 1px solid darkgrey;
 }
 
 #weekend {
   position: absolute;
   top: 0;
-  left: 64px;
+  left: 63px;
   font-family: 'Comic Sans MS', cursive;
   display: table-cell;
   vertical-align: middle;
-  width: 319px;
+  width: 320px;
   height: 70px;
   z-index: 2;
   color: #FFC107;
   font-size: 28px;
   font-weight: bold;
+  border-right: 1px solid darkgrey;
+  border-top: 1px solid darkgrey;
+}
+
+#weekend tr td {
+  padding: 4px;
+  width: 160px;
+  height: 70px;
+  border-bottom: 1px solid darkgrey;
 }
 
 #courseForWeek {
-  position: relative;
+  position: absolute;
+  top: 70px;
+  left: 60px;
   display: table-cell;
   vertical-align: middle;
   z-index: 3;
-  width: 800px;
+  width: 550px;
   font-family: "源泉圓體";
   font-weight: 500;
   background-color: #ebebeb;
+  border-right: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
 }
 
 #courseForWeekend {
   position: absolute;
   top: 70px;
-  left: 63px;
+  left: 60px;
   display: table-cell;
   z-index: 2;
   vertical-align: middle;
-  width: 320px;
+  width: 323px;
   font-family: "源泉圓體";
   font-weight: 500;
   background-color: #ebebeb;
+  border-right: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
 }
 
 .course tr td {
+  width: 110px;
   height: 137px;
+  padding: 4px;
 }
 
 .course h5 {
   color: #383837;
+  font-size: 14px;
 }
 
 .course h5:hover {
@@ -190,6 +208,7 @@ td {
   background-color: rgb(125, 152, 177);
   color: #eaeaea;
   border-radius: 20px;
+  margin-bottom: 0;
 }
 
 .course p:hover {
@@ -197,8 +216,8 @@ td {
   background-color: #eaeaea;
 }
 
-@media screen and (min-width: 468px) {
-  .course tr td {
-    height: 113px;
-  }
+.styleForWeekend tr td {
+  width: 160px;
+  padding: 4px;
+  height: 137px;
 }

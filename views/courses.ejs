@@ -23,8 +23,7 @@
 </style>
 
 <body>
-  <button class="toggleForWeekend btn-effect" id="idForButton"><span
-      class="material-icons-round exchange">
+  <button class="toggleForWeekend btn-effect" id="idForButton"><span class="material-icons-round exchange">
       swap_horiz
     </span>
   </button>
@@ -139,16 +138,16 @@
         </tr>
       </table>
       <table class="table course test" id="courseForWeek">
-      <% for(let i=1;i<16;i++){ %>
+        <% for(let i=1;i<16;i++){ %>
         <tr>
-        <% for(let j=1;j<6;j++){ %>
+          <% for(let j=1;j<6;j++){ %>
           <td>
             <h5 id="<%= i+'-'+j+'-1' %>"></h5>
             <p id="<%= i+'-'+j+'-2' %>"></p>
           </td>
-        <% } %>
+          <% } %>
         </tr>
-      <% } %>
+        <% } %>
       </table>
     </div>
     <div id="containerForWeekend">
@@ -158,17 +157,17 @@
           <td>Sun.</td>
         </tr>
       </table>
-      <table class="table course test" style="opacity: 0" id="courseForWeekend">
-      <% for(let i=1;i<16;i++){ %>
+      <table class="table course styleForWeekend test" style="opacity: 0" id="courseForWeekend">
+        <% for(let i=1;i<16;i++){ %>
         <tr>
-        <% for(let j=6;j<8;j++){ %>
+          <% for(let j=6;j<8;j++){ %>
           <td>
             <h5 id="<%= i+'-'+j+'-1' %>"></h5>
             <p id="<%= i+'-'+j+'-2' %>"></p>
           </td>
-        <% } %>
+          <% } %>
         </tr>
-      <% } %>
+        <% } %>
       </table>
     </div>
   </div>
@@ -176,4 +175,5 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../js/courses.js"></script>
 </body>
+
 </html>
