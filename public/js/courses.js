@@ -31,7 +31,7 @@ function tran() {
     }
     isWeekDay = !isWeekDay;
 }
-axios.get("http://localhost:3000/api/courses", {
+axios.get("https://my-nuk-api.herokuapp.com/api/courses", {
         params: {
             id: loginId,
             channel: loginChannel
