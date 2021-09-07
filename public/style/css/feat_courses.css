@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+.effect {
+  opacity: 1;
+  transition: opacity 1s
+}
+
 .toggleForWeekend {
   position: fixed;
   bottom: 15px;
