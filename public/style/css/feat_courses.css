@@ -201,7 +201,8 @@ td {
 
 .course h5 {
   color: #383837;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .course h5:hover {
@@ -212,6 +213,7 @@ td {
 .course p {
   background-color: rgb(125, 152, 177);
   color: #eaeaea;
+  font-size: 14px;
   border-radius: 20px;
   margin-bottom: 0;
 }
