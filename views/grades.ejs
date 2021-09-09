@@ -1,20 +1,135 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-  <link rel="stylesheet" href="../../style/css/courses.css">
-  <link rel="stylesheet" href="../../style/css/feat_courses.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../style/css/cssreset.css">
+  <link rel="stylesheet" href="../../style/css/main.css">
+  <link rel="stylesheet" href="../../style/css/grades.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <title>歷屆成績查詢</title>
 </head>
+
 <body>
-  <h1>hello</h1>
+  <div class="wrap">
+    <div class="Load"><span class="loading">
+        <span class="loading-inner"></span>
+      </span></div>
+
+    <div class="dropBtn d-flex">
+      <div class="choose d-flex"><span class="down material-icons-round p-2" type="button" id="dropdownMenuTerm"
+          data-bs-toggle="dropdown">
+          south
+        </span>
+        <div class="dropdown-menu dropdown-menu-dark">
+          <option class="dropdown-item" value="105">105
+          </option>
+          <hr class="dropdown-divider">
+          <option class="dropdown-item" value="106">106</option>
+          <hr class="dropdown-divider">
+          <option class="dropdown-item" value="107">107</option>
+          <hr class="dropdown-divider">
+          <option class="dropdown-item" value="108">108</option>
+          <hr class="dropdown-divider">
+          <option class="dropdown-item" value="109">109</option>
+          <hr class="dropdown-divider">
+          <option class="dropdown-item" value="110">110</option>
+        </div>
+        <div class="Input" id="inputForTerm">學年度</div>
+      </div>
+      <div class="choose d-flex"><span class="down material-icons-round p-2" type="button" id="dropdownMenuTerm"
+          data-bs-toggle="dropdown">
+          south
+        </span>
+        <div class="dropdown-menu dropdown-menu-dark">
+          <option class="dropdown-item" value="First">1
+          </option>
+          <hr class="dropdown-divider">
+          <option class="dropdown-item" value="Second">2</option>
+
+        </div>
+        <div class="Input" id="inputForTerm">學期</div>
+      </div>
+    </div>
+    <div class="tableForGrades mt-3">
+      <table class="table align-middle table-borderless">
+        <thead class="table-dark">
+          <tr>
+            <td>課號</td>
+            <td>課程名稱</td>
+            <td>學期成績</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CSB011</td>
+            <td>資料結構</td>
+            <td>79</td>
+          </tr>
+          <tr>
+            <td>CSB042</td>
+            <td>數位電路實驗</td>
+            <td>80</td>
+          </tr>
+          <tr>
+            <td>CSB061</td>
+            <td>工程數學</td>
+            <td>76</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="totalScore d-flex">
+      <span class="bg-light">總學分</span>
+      <span id="totalScore" class="bg-light">24</span>
+    </div>
+  </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../js/grades.js"></script>
 </body>
+
 </html>
