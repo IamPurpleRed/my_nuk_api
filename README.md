@@ -20,6 +20,9 @@ A simple API for my_nuk Flutter APP.
   - /courses
 
 ## 版本歷程紀錄 | Version History
+### v0.4.1-beta (2021/09/11):
+- 修正/api/courses路由回傳的json格式漏掉status參數，此漏洞將導致my_nuk應用程式不好判斷爬蟲是否正常運行
+
 ### v0.4-beta (2021/09/08):
 - 新增API功能：取得當前學期的所有課程(/api/courses)
   - 以完成E平台1.0通道(channel 2)
