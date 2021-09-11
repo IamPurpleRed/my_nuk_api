@@ -74,7 +74,11 @@ router.get('/', (req, res) => {
                         data.push(item);
                     }
 
-                    let finalResult = formatData(data);  // 進行資料整理
+                    let content = formatData(data);  // 進行資料整理
+                    let finalResult = {
+                        'status': 'success',
+                        'content': content,
+                    };
                     showPage(JSON.stringify(finalResult, null, 2));
                 }
             });
