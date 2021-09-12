@@ -23,39 +23,19 @@
       </span></div>
 
     <div class="dropBtn d-flex">
-      <div class="choose d-flex"><span class="down material-icons-round p-2" type="button" id="dropdownMenuTerm"
-          data-bs-toggle="dropdown">
-          south
-        </span>
-        <div class="dropdown-menu dropdown-menu-dark">
-          <option class="dropdown-item" value="105">105
-          </option>
-          <hr class="dropdown-divider">
-          <option class="dropdown-item" value="106">106</option>
-          <hr class="dropdown-divider">
-          <option class="dropdown-item" value="107">107</option>
-          <hr class="dropdown-divider">
-          <option class="dropdown-item" value="108">108</option>
-          <hr class="dropdown-divider">
-          <option class="dropdown-item" value="109">109</option>
-          <hr class="dropdown-divider">
-          <option class="dropdown-item" value="110">110</option>
-        </div>
-        <div class="Input" id="inputForTerm">學年度</div>
-      </div>
-      <div class="choose d-flex"><span class="down material-icons-round p-2" type="button" id="dropdownMenuTerm"
-          data-bs-toggle="dropdown">
-          south
-        </span>
-        <div class="dropdown-menu dropdown-menu-dark">
-          <option class="dropdown-item" value="First">1
-          </option>
-          <hr class="dropdown-divider">
-          <option class="dropdown-item" value="Second">2</option>
-
-        </div>
-        <div class="Input" id="inputForTerm">學期</div>
-      </div>
+      <select class="choose" id="Semester">
+        <option value="Semester" selected hidden disabled>學年度</option>
+        <option value="106">106</option>
+        <option value="107">107</option>
+        <option value="108">108</option>
+        <option value="109">109</option>
+        <option value="110">110</option>
+      </select>
+      <select class="choose" id="Term">
+        <option value="Term" selected hidden disabled>學期</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
     </div>
     <div class="tableForGrades mt-3">
       <table class="table align-middle table-borderless">
