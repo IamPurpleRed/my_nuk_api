@@ -25,11 +25,7 @@
     <div class="dropBtn d-flex">
       <select class="choose" id="Semester">
         <option value="Semester" selected hidden disabled>學年度</option>
-        <option value="106">106</option>
-        <option value="107">107</option>
-        <option value="108">108</option>
-        <option value="109">109</option>
-        <option value="110">110</option>
+        
       </select>
       <select class="choose" id="Term">
         <option value="Term" selected hidden disabled>學期</option>
@@ -38,7 +34,7 @@
       </select>
     </div>
     <div class="tableForGrades mt-3">
-      <table class="table align-middle table-borderless">
+      <table class="table align-middle table-borderless" id="courseTable">
         <thead class="table-dark">
           <tr>
             <td>課號</td>
@@ -62,41 +58,6 @@
             <td>工程數學</td>
             <td>76</td>
           </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -105,9 +66,6 @@
       <span id="totalScore" class="bg-light">24</span>
     </div>
   </div>
-
-
-
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../js/grades.js"></script>
 </body>
