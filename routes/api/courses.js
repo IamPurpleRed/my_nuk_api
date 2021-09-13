@@ -5,14 +5,96 @@ var cheerio = require('cheerio');
 
 let router = express.Router();
 
-router.get('/', (req, res) => {
-    let id = req.query.id;
-    let pwd = req.query.pwd;
-    let channel = req.query.channel;
+router.post('/', (req, res) => {
+    let id = req.body.id;
+    let pwd = req.body.pwd;
+    let channel = req.body.channel;
     let cookie;
+    let successResult = {
+        'status': 'success',
+        'content': null,
+    };
+
+
+    /* INFO: 驗證管道1：學生選課系統 */
+    if (channel == 1) {
+        let jar = request.jar();
+        let request1 = request.defaults({ jar: jar });
+        request1({
+            url: 'https://course.nuk.edu.tw/Sel/SelectMain1.asp',
+            method: 'POST',
+            encoding: null,
+            followRedirect: false,
+            form: {
+                Account: id,
+                Password: pwd
+            },
+        }, (err, res, body) => {
+            if (err) {
+                fail('伺服器錯誤', 'Failed to login "course.nuk.edu.tw". Error message: ' + err);
+            } else if (!body) {
+                fail('伺服器錯誤', 'Failed to login "course.nuk.edu.tw". Error message: Body is null.');
+            } else {
+                let result = iconv.decode(body, 'big-5');
+                let $ = cheerio.load(result);
+                if ($('h1').text().trim() == '物件已移動')
+                    goToCourseTablePage();
+                else 
+                    fail('帳號或密碼輸入錯誤', 'Wrong account or password.');  // 使用者輸入錯的帳號密碼
+            }
+        });
+
+        function goToCourseTablePage() {
+            let request1 = request.defaults({ jar: jar });
+            request1({
+                url: 'https://course.nuk.edu.tw/Sel/query3.asp',
+                method: 'GET',
+                encoding: null,
+            }, (err, res, body) => {
+                if (err) {
+                    fail('伺服器錯誤', 'Failed to reach course table. Error message: ' + err);
+                } else if (!body) {
+                    fail('伺服器錯誤', 'Failed to reach course table. Error message: Body is null.');
+                } else {
+                    let result = iconv.decode(body, 'big-5');
+                    let $ = cheerio.load(result);
+                    
+                    let courseList = [];  // 存放所有爬蟲資料(一個項目為一堂課)
+                    for (let i = 2; i <= $('body > table > tbody > tr').length; i++) {
+                        let item = [];  // 存放當前課程資料(共5個，蒐集完畢會存進courseList陣列)
+                        let selector = 'body > table > tbody > tr:nth-child(' + i + ')';
+
+                        let id = $(selector + ' > td:nth-child(2)').text();
+                        let name = $(selector + ' > td:nth-child(3)').text();
+                        let time = $(selector + ' > td:nth-child(6)').text();
+                        let classroom = $(selector + ' > td:nth-child(7)').text();
+                        let professor = $(selector + ' > td:nth-child(8)').text();
+                        item.push(id);
+                        item.push(name);
+                        item.push(time);
+                        item.push(classroom);
+                        item.push(professor);
+
+                        courseList.push(item);
+                    }
+                    
+                    let content = formatData(courseList);  // 進行資料整理
+                    successResult['content'] = content;
+                    showPage(JSON.stringify(successResult, null, 2));
+                }
+            });
+        }
+
+        function formatData(data) {
+            let result = data;  // 把這行刪掉(這行只是為了讓程式能正常運作)
+            // TODO: 鈺修整理資料
+            
+            return result;
+        }
+    }
 
     /* INFO: 驗證管道2：E平台 1.0(考量效率，此管道不會爬教授名字) */
-    if (channel == 2) {
+    else if (channel == 2) {
         let jar = request.jar();
         let request1 = request.defaults({ jar: jar });
         request1({

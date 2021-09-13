@@ -58,7 +58,10 @@ router.get('/', (req, res) => {
                     return gotoPage(item);
                 });
             }, Promise.resolve()).then(() => {
-                showPage(JSON.stringify(finalResult, null, 2));
+                if (finalResult.content.length == 0)
+                    fail('E平台錯誤', 'Failed to login e-learning 1.0. Error message: array finalResult is empty.');
+                else
+                    showPage(JSON.stringify(finalResult, null, 2));
             });
         });
     }
