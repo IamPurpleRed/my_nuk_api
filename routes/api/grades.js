@@ -5,15 +5,12 @@ var cheerio = require('cheerio');
 
 var router = express.Router();
 
-router.get('/', (req, res) => {
-    let id = req.query.id;
-    let pwd = req.query.pwd;
-    let requestHeaders = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+router.post('/', (req, res) => {
+    let id = req.body.id;
+    let pwd = req.body.pwd;
 
-    let loginRequest = request.defaults({ jar: true }); // cookie開啟
+    let jar = request.jar();
+    let loginRequest = request.defaults({ jar: jar });
     loginRequest({
         url: 'https://aca.nuk.edu.tw/Student2/Menu1.asp',
         method: 'POST',
@@ -23,39 +20,36 @@ router.get('/', (req, res) => {
             Account: id,
             Password: pwd
         },
-        headers: requestHeaders
     }, (err, res, body) => {
         /* 如果偵測到錯誤或是收到的body為空 */
-        if (err || !body) {
-            fail('無法連接到高大教務系統', 'Unable to reach NUK server.');
+        if (err) {
+            fail('伺服器錯誤', 'Failed to login "aca.nuk.edu.tw". Error message: ' + err);
+        } else if (!body) {
+            fail('伺服器錯誤', 'Failed to login "aca.nuk.edu.tw". Error message: Body is null.');
         } else {
             let result = iconv.decode(body, 'big-5');  // 學校網站用big-5，否則會讀到亂碼
             let $ = cheerio.load(result);
-            if ($('h1').text().trim() == '物件已移動') {
-                let cookie = res.headers['set-cookie'][0];  // sessionID
-                gotoScorePage(cookie);
-            } else {
+            if ($('h1').text().trim() == '物件已移動')
+                gotoScorePage();
+            else 
                 fail('帳號或密碼輸入錯誤', 'Wrong account or password.');  // 使用者輸入錯的帳號密碼
-            }
         }
     });
 
-    function gotoScorePage(cookie) {
-        let gradeRequest = request.defaults({ jar: true }); // cookie開啟
-        gradeRequest({
+    function gotoScorePage() {
+        let scorePageRequest = request.defaults({ jar: jar }); // cookie開啟
+        scorePageRequest({
             url: 'https://aca.nuk.edu.tw/Student2/SO/ScoreQuery.asp',
             method: 'POST',
             encoding: null,
-            headers: requestHeaders,
-            Cookie: cookie
         }, (err, res, body) => {
-            if (err || !body) {
-                fail('無法連接到高大教務系統', 'Unable to reach NUK server.');
+            if (err) {
+                fail('伺服器錯誤', 'Failed to reach score page. Error message: ' + err);
+            } else if (!body) {
+                fail('伺服器錯誤', 'Failed to reach score page. Error message: Body is null.');
             } else {
                 let result = iconv.decode(body, 'big-5');
                 let $ = cheerio.load(result);
-
-
 
                 /* 學生資料 */
                 let student = [];
@@ -122,7 +116,7 @@ router.get('/', (req, res) => {
                 };
 
                 /* 最終要送出的json */
-                let finalResult = {
+                let successResult = {
                     'status': 'success',
                     'student': student,
                     'grades': grades,
@@ -130,7 +124,7 @@ router.get('/', (req, res) => {
                 };
 
                 /* 輸出 */
-                showPage(JSON.stringify(finalResult, null, 2));
+                showPage(JSON.stringify(successResult, null, 2));
             }
         });
     }
@@ -141,12 +135,12 @@ router.get('/', (req, res) => {
     }
 
     function fail(message, log) {
-        let finalResult = {
+        let failResult = {
             'status': 'fail',
             'reason': message,
             'log': log
         };
-        showPage(JSON.stringify(finalResult, null, 2));
+        showPage(JSON.stringify(failResult, null, 2));
     }
 });
 

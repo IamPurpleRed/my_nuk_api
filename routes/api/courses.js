@@ -9,18 +9,27 @@ router.post('/', (req, res) => {
     let id = req.body.id;
     let pwd = req.body.pwd;
     let channel = req.body.channel;
-    let cookie;
     let successResult = {
         'status': 'success',
         'content': null,
     };
-
+    let dic = {
+        'B01': '綜合大樓',
+        'C01': '工學院',
+        'C02': '理學院',
+        'H1-': '人社科學院',
+        'H2-': '人社科學院',
+        'K01': '運健休大樓',
+        'L01': '圖資大樓',
+        'L02': '法學院',
+        'M01': '管學院'
+    };
 
     /* INFO: 驗證管道1：學生選課系統 */
     if (channel == 1) {
         let jar = request.jar();
-        let request1 = request.defaults({ jar: jar });
-        request1({
+        let loginRequest = request.defaults({ jar: jar });
+        loginRequest({
             url: 'https://course.nuk.edu.tw/Sel/SelectMain1.asp',
             method: 'POST',
             encoding: null,
@@ -45,8 +54,8 @@ router.post('/', (req, res) => {
         });
 
         function goToCourseTablePage() {
-            let request1 = request.defaults({ jar: jar });
-            request1({
+            let courseTablePageRequest = request.defaults({ jar: jar });
+            courseTablePageRequest({
                 url: 'https://course.nuk.edu.tw/Sel/query3.asp',
                 method: 'GET',
                 encoding: null,
@@ -96,8 +105,8 @@ router.post('/', (req, res) => {
     /* INFO: 驗證管道2：E平台 1.0(考量效率，此管道不會爬教授名字) */
     else if (channel == 2) {
         let jar = request.jar();
-        let request1 = request.defaults({ jar: jar });
-        request1({
+        let loginRequest = request.defaults({ jar: jar });
+        loginRequest({
             url: 'http://elearning.nuk.edu.tw/p_login_stu_at.php?bStu_id=' + id,
             method: 'GET',
             encoding: null,
@@ -112,17 +121,16 @@ router.post('/', (req, res) => {
                 } catch (err) {
                     fail('伺服器錯誤', 'Failed to login e-learning 1.0. Error message: ' + err);
                 }
-                gotoHomepage(cookie);
+                gotoHomepage();
             }
         });
 
-        function gotoHomepage(cookie) {
-            let request2 = request.defaults({ jar: jar });
-            request2({
+        function gotoHomepage() {
+            let homepageRequest = request.defaults({ jar: jar });
+            homepageRequest({
                 url: 'http://elearning.nuk.edu.tw/m_student/m_stu_index.php',
                 method: 'GET',
                 encoding: null,
-                Cookie: cookie
             }, (err, res, body) => {
                 if (err) {
                     fail('伺服器錯誤', 'Failed to GET e-learning 1.0 homepage. Error message: ' + err);
@@ -133,7 +141,7 @@ router.post('/', (req, res) => {
                     let $ = cheerio.load(result);
                     
                     /* 爬蟲工作 */
-                    let data = [];  // 存放爬下來但未整理的資料
+                    let courseList = [];  // 存放爬下來但未整理的資料
                     for (let i = 1; true; i++) {
                         let selector = '#myTable > tbody > tr:nth-child(' + i + ')';
                         let item = [];
@@ -153,15 +161,12 @@ router.post('/', (req, res) => {
                         item.push(time);
                         item.push('');  // 空的教授名字
 
-                        data.push(item);
+                        courseList.push(item);
                     }
 
-                    let content = formatData(data);  // 進行資料整理
-                    let finalResult = {
-                        'status': 'success',
-                        'content': content,
-                    };
-                    showPage(JSON.stringify(finalResult, null, 2));
+                    let content = formatData(courseList);  // 進行資料整理
+                    successResult['content'] = content;
+                    showPage(JSON.stringify(successResult, null, 2));
                 }
             });
         }
@@ -177,17 +182,6 @@ router.post('/', (req, res) => {
                         arr3D[i][j][k] = null;
                     }
                 }
-            }
-            let dic = {
-                'B01': '綜合大樓',
-                'C01': '工學院',
-                'C02': '理學院',
-                'H1-': '人社科學院',
-                'H2-': '人社科學院',
-                'K01': '運健休大樓',
-                'L01': '圖資大樓',
-                'L02': '法學院',
-                'M01': '管學院'
             }
             for (let a in data) {
                 let courseDay = data[a][2].charAt(1); // 取出星期幾
@@ -237,12 +231,12 @@ router.post('/', (req, res) => {
     }
 
     function fail(message, log) {
-        let finalResult = {
+        let failResult = {
             'status': 'fail',
             'reason': message,
             'log': log
         };
-        showPage(JSON.stringify(finalResult, null, 2));
+        showPage(JSON.stringify(failResult, null, 2));
     }
 });
 
