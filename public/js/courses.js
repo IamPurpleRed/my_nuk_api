@@ -1,6 +1,6 @@
 let url = new URL(location.href);
 let loginId = url.searchParams.get('id');
-let loginPwd= url.searchParams.get('pwd');
+let loginPwd = url.searchParams.get('pwd');
 let loginChannel = 1;
 let btn = document.getElementById("idForButton");
 let weekdays = document.getElementById("courseForWeek");
@@ -8,6 +8,8 @@ let weekends = document.getElementById("courseForWeekend");
 let weekends_title = document.getElementById("weekend");
 let weekdays_title = document.getElementById("weekday");
 let isWeekDay = true;
+let loading = document.getElementById("Load");
+weekdays.style.opacity = 0.5;
 btn.addEventListener("click", tran);
 
 function tran() {
@@ -28,16 +30,21 @@ function tran() {
     }
     isWeekDay = !isWeekDay;
 }
-axios.get("https://my-nuk-api.herokuapp.com/api/courses", {
-        params: {
+axios({
+        method: 'post',
+        url: "https://my-nuk-api.herokuapp.com/api/courses",
+        //API要求的資料
+        data: {
             id: loginId,
-			pwd: loginPwd,
+            pwd: loginPwd,
             channel: loginChannel
         }
     })
     .then(function (response) {
         if (response.request.readyState === 4 && response.status === 200) {
-            let info = response.data;
+            loading.style.display = "none";
+            weekdays.style.opacity = 1;
+            let info = response.data.content;
             for (let i in info) {
                 let name = info[i][1]; //取出課程名稱
                 let lecturer = info[i][2]; //取出教授
@@ -49,7 +56,7 @@ axios.get("https://my-nuk-api.herokuapp.com/api/courses", {
                         course++; //JSON課程陣列從0開始 介面表格從1開始 因此加1
                         temp = document.getElementById(course + '-' + i + '-1');
                         temp.textContent = info[i][1][j];
-                        temp = document.getElementById(course+'-'+ i +'-3');
+                        temp = document.getElementById(course + '-' + i + '-3');
                         temp.textContent = info[i][2][j];
                         temp = document.getElementById(course + '-' + i + '-2');
                         temp.textContent = info[i][3][j];
