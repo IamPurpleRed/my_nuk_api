@@ -8,7 +8,7 @@ let router = express.Router();
 router.post('/', (req, res) => {
     let id = req.body.id;
     let pwd = req.body.pwd;
-    let channel = req.body.channel;
+    let channel = body.query.channel;
     let successResult = {
         'status': 'success',
         'content': null,
@@ -95,9 +95,44 @@ router.post('/', (req, res) => {
         }
 
         function formatData(data) {
-            let result = data;  // 把這行刪掉(這行只是為了讓程式能正常運作)
-            // TODO: 鈺修整理資料
-            
+            let dictionary = {
+                '一': 1,
+                '二': 2,
+                '三': 3,
+                '四': 4,
+                '五': 5
+            };
+            let result = Object();
+            let arr3D = new Array();
+            for (let i = 1; i < 6; i++) {
+                arr3D[i] = new Array();
+                for (let j = 0; j < 4; j++) {
+                    arr3D[i][j] = new Array();
+                    for (let k = 0; k < 15; k++) {
+                        arr3D[i][j][k] = null;
+                    }
+                }
+            }
+            for(let i in data){
+                let day = dictionary[data[i][2][0]];
+                let courseNum =  data[i][2].split(data[i][2][0]);
+                courseNum.shift();
+                let courseCode = data[i][0];
+                let courseName = data[i][1];
+                let classroom = dic[data[i][3].slice(0,3)] + data[i][3].slice(4,7);
+                let professor = data[i][4];
+                for(let j in courseNum){
+                    arr3D[day][0][courseNum[j]] = courseCode;
+                    arr3D[day][1][courseNum[j]] = courseName;
+                    arr3D[day][2][courseNum[j]] = classroom;
+                    arr3D[day][3][courseNum[j]] = professor;
+                }
+            }
+            result['1'] = arr3D[1];
+            result['2'] = arr3D[2];
+            result['3'] = arr3D[3];
+            result['4'] = arr3D[4];
+            result['5'] = arr3D[5];
             return result;
         }
     }
