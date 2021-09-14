@@ -100,7 +100,7 @@ router.post('/', (req, res) => {
                     /* 如果成功的話，最終要送出的json */
                     let successResult = {
                         'status': 'success',
-                        'name': res.headers['set-cookie'][0],
+                        'cookies': res.headers['set-cookie'][0],
                     };
                     showPage(JSON.stringify(successResult, null, 2));
                 }
