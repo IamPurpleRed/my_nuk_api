@@ -122,6 +122,9 @@
       </tr>
     </table>
     <div id="containerForWeek">
+      <div class="Load"><span class="loading">
+        <span class="loading-inner"></span>
+    </span></div>
       <table class="table weekday effect" id="weekday">
         <tr>
           <td>Mon.</td>
@@ -138,6 +141,7 @@
           <td>
             <h5 id="<%= i+'-'+j+'-1' %>"></h5>
             <p id="<%= i+'-'+j+'-2' %>"></p>
+            <h6 class="name" id="<%= i+'-'+j+'-3' %>"></h6>
           </td>
           <% } %>
         </tr>
@@ -158,6 +162,7 @@
           <td>
             <h5 id="<%= i+'-'+j+'-1' %>"></h5>
             <p id="<%= i+'-'+j+'-2' %>"></p>
+            <h6 class="name" id="<%= i+'-'+j+'-3' %>"></h6>
           </td>
           <% } %>
         </tr>

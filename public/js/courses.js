@@ -1,6 +1,7 @@
 let url = new URL(location.href);
 let loginId = url.searchParams.get('id');
-let loginChannel = url.searchParams.get('channel');
+let loginPwd= url.searchParams.get('pwd');
+let loginChannel = 1;
 let btn = document.getElementById("idForButton");
 let weekdays = document.getElementById("courseForWeek");
 let weekends = document.getElementById("courseForWeekend");
@@ -30,6 +31,7 @@ function tran() {
 axios.get("https://my-nuk-api.herokuapp.com/api/courses", {
         params: {
             id: loginId,
+			pwd: loginPwd,
             channel: loginChannel
         }
     })
@@ -47,8 +49,8 @@ axios.get("https://my-nuk-api.herokuapp.com/api/courses", {
                         course++; //JSON課程陣列從0開始 介面表格從1開始 因此加1
                         temp = document.getElementById(course + '-' + i + '-1');
                         temp.textContent = info[i][1][j];
-                        //    temp = document.getElementById(course+'-'+i+'-3');
-                        //    temp.textContent = info[i][2][j];
+                        temp = document.getElementById(course+'-'+ i +'-3');
+                        temp.textContent = info[i][2][j];
                         temp = document.getElementById(course + '-' + i + '-2');
                         temp.textContent = info[i][3][j];
                     }
