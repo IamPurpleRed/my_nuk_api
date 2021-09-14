@@ -91,3 +91,37 @@ function showTitle() {
     thead.setAttribute('class', 'table-dark');
     courseTable.appendChild(thead);
 }
+
+let currNumber = document.getElementById("currNumber");
+let currCounter = 0;
+let goalNumber = document.getElementById("goalNumber");
+let goalCounter = 0;
+let totalNumber = document.getElementById("totalNumber");
+let totalCounter = 0;
+setInterval(() => {
+    if (currCounter == 80) {
+        clearInterval();
+    } else {
+        currCounter += 1;
+        currNumber.innerHTML = currCounter;
+    }
+
+}, 20);
+setInterval(() => {
+    if (goalCounter == 80) {
+        clearInterval();
+    } else {
+        goalCounter += 1;
+        goalNumber.innerHTML = goalCounter;
+    }
+
+}, 20);
+setInterval(() => {
+    if (totalCounter == 80) {
+        clearInterval();
+    } else {
+        totalCounter += 1;
+        totalNumber.innerHTML = totalCounter;
+    }
+
+}, 20);

@@ -18,14 +18,10 @@
 
 <body>
   <div class="wrap">
-    <div class="Load"><span class="loading">
-        <span class="loading-inner"></span>
-      </span></div>
-
     <div class="dropBtn d-flex">
       <select class="choose" id="Semester">
         <option value="Semester" selected hidden disabled>學年度</option>
-        
+
       </select>
       <select class="choose" id="Term">
         <option value="Term" selected hidden disabled>學期</option>
@@ -36,10 +32,63 @@
     <div class="tableForGrades mt-3">
       <table class="table align-middle table-borderless" id="courseTable"></table>
     </div>
-    <div class="totalScore d-flex">
-      <span class="bg-light">總學分</span>
-      <span id="totalScore" class="bg-light">24</span>
+    <div class="score d-flex">
+      <div class="currScore">
+        <div class="outer">
+          <svg width="100" height="100">
+            <defs>
+              <linearGradient id="GradientColor1">
+                <stop offset="0%" stop-color="#30cfd0" />
+                <stop offset="100%" stop-color="#330867" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50"></circle>
+          </svg>
+          <div class="inner">
+            <div id="currNumber">
+              <span>%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="goalScore">
+        <div class="outer">
+          <svg width="100" height="100">
+            <defs>
+              <linearGradient id="GradientColor2">
+                <stop offset="0%" stop-color="#a8edea" />
+                <stop offset="100%" stop-color="#fed6e3" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50"></circle>
+          </svg>
+          <div class="inner">
+            <div id="goalNumber">
+              <span>%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="totalScore">
+        <div class="outer">
+          <svg width="100" height="100">
+            <defs>
+              <linearGradient id="GradientColor3">
+                <stop offset="0%" stop-color="#a1c4fd" />
+                <stop offset="100%" stop-color="#c2e9fb" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50"></circle>
+          </svg>
+          <div class="inner">
+            <div id="totalNumber">
+              <span>%</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../js/grades.js"></script>

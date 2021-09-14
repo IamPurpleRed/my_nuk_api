@@ -186,12 +186,83 @@ body {
 
 
 /*--------------------------------------------------------*/
-.totalScore {
-    position: absolute;
-    bottom: 15px;
+.score {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.outer {
+    width: 100px;
+    height: 100px;
+    /* background-color: #455a88; */
+    border-radius: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: 20px;
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+        -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+.inner {
+    width: 75px;
+    height: 75px;
+    background-color: #d4d9e4;
+    border-radius: 100%;
+    box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+        inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+        -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+        0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+        0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#number {
+    color: #183168;
     font-weight: bold;
+    font-size: 20px;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+}
+
+.currScore circle {
+    stroke-width: 25px;
+    stroke: url(#GradientColor1);
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    fill: none;
+    animation: anime 1.5s linear forwards;
+}
+
+.goalScore circle {
+    stroke-width: 25px;
+    stroke: url(#GradientColor2);
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    fill: none;
+    animation: anime 1.5s linear forwards;
+}
+
+.totalScore circle {
+    stroke-width: 25px;
+    stroke: url(#GradientColor3);
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    fill: none;
+    animation: anime 1.5s linear forwards;
+}
+
+@keyframes anime {
+    100% {
+        stroke-dashoffset: 200;
+    }
 }
