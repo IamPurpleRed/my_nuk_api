@@ -17,8 +17,6 @@ function tran() {
         weekends_title.style.opacity = 1;
         weekends_title.style.zIndex = 5;
         weekends.style.zIndex = 4;
-        weekdays_title.style.display = "none";
-        weekdays.style.display = "none";
     } else {
         weekdays.style.opacity = 1;
         weekdays_title.style.opacity = 1;
@@ -26,8 +24,6 @@ function tran() {
         weekends_title.style.opacity = 0;
         weekends_title.style.zIndex = 3;
         weekends.style.zIndex = 2;
-        weekdays_title.style.display = "block";
-        weekdays.style.display = "block";
     }
     isWeekDay = !isWeekDay;
 }
