@@ -8,7 +8,7 @@ let router = express.Router();
 router.post('/', (req, res) => {
     let id = req.body.id;
     let pwd = req.body.pwd;
-    let channel = body.query.channel;
+    let channel = req.body.channel;
     let successResult = {
         'status': 'success',
         'content': null,
@@ -119,7 +119,7 @@ router.post('/', (req, res) => {
                 courseNum.shift();
                 let courseCode = data[i][0];
                 let courseName = data[i][1];
-                let classroom = dic[data[i][3].slice(0,3)] + data[i][3].slice(4,7);
+                let classroom = dic[data[i][3].split(',')[0].slice(0,3)] + data[i][3].split(',')[0].slice(4);
                 let professor = data[i][4];
                 for(let j in courseNum){
                     arr3D[day][0][courseNum[j]] = courseCode;
