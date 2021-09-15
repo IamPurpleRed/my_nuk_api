@@ -95,7 +95,6 @@ function showTitle() {
 let currNumber = document.getElementById("currNumber");
 let currCounter = 0;
 let goalNumber = document.getElementById("goalNumber");
-let goalCounter = 0;
 let totalNumber = document.getElementById("totalNumber");
 let totalCounter = 0;
 setInterval(() => {
@@ -103,19 +102,9 @@ setInterval(() => {
         clearInterval();
     } else {
         currCounter += 1;
-        currNumber.innerHTML = currCounter;
     }
 
-}, 20);
-setInterval(() => {
-    if (goalCounter == 80) {
-        clearInterval();
-    } else {
-        goalCounter += 1;
-        goalNumber.innerHTML = goalCounter;
-    }
-
-}, 20);
+}, 50);
 setInterval(() => {
     if (totalCounter == 80) {
         clearInterval();

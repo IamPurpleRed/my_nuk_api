@@ -190,12 +190,25 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-bottom: 10px;
+}
+
+.score h5 {
+    font-weight: bold;
+    font-family: "源泉圓體";
+    color: #5d7097;
+}
+
+.score h6 {
+    font-weight: bold;
+    font-family: "源泉圓體";
+    color: #5d7097;
+    margin-left: 100px;
 }
 
 .outer {
     width: 100px;
     height: 100px;
-    /* background-color: #455a88; */
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -203,6 +216,7 @@ body {
     box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
         -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
     position: relative;
+    margin: 0 auto;
 }
 
 .inner {
@@ -216,9 +230,6 @@ body {
         0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
         0px 12px 10px -10px rgba(0, 0, 0, 0.05);
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #number {
@@ -237,32 +248,51 @@ svg {
 .currScore circle {
     stroke-width: 25px;
     stroke: url(#GradientColor1);
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 50;
     fill: none;
-    animation: anime 1.5s linear forwards;
+    animation: anime 3s linear forwards;
 }
 
-.goalScore circle {
-    stroke-width: 25px;
-    stroke: url(#GradientColor2);
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    fill: none;
-    animation: anime 1.5s linear forwards;
+.curr {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #4483a0;
+}
+
+.divide {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    transform: rotate(30deg);
+    opacity: 0.5;
+}
+
+.goal {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(218, 24, 56);
 }
 
 .totalScore circle {
     stroke-width: 25px;
     stroke: url(#GradientColor3);
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 50;
     fill: none;
     animation: anime 1.5s linear forwards;
 }
 
 @keyframes anime {
     100% {
-        stroke-dashoffset: 200;
+        stroke-dashoffset: 0;
     }
 }
