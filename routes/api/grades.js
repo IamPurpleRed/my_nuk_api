@@ -82,7 +82,7 @@ router.post('/', (req, res) => {
                     /* stats */
                     let statsPos = 'body > p:nth-child(' + (i * 4 + 2) + ')';
                     let stats = {};
-                    if (i == $('font:contains("學期")').length - 1) {
+                    if ($(statsPos).children().length == 2) {
                         stats = {
                             "allCredits": $(statsPos + ' > table:nth-child(1) > tbody > tr > td:nth-child(1) > b').text().substring(6),
                             "earnedCredits": $(statsPos + ' > table:nth-child(1) > tbody > tr > td:nth-child(2) > b').text().substring(6),
@@ -107,12 +107,12 @@ router.post('/', (req, res) => {
                     grades.push(oneSemester);
                 }
 
-                let finalStatsPos = 'body > table:nth-child(' + ($('font:contains("學期")').length * 4) + ') > tbody > tr:nth-child(2)';
                 let finalStats = {
-                    "allCredits": $(finalStatsPos + ' > td:nth-child(1)').text().substring(9),
-                    "earnedCredits": $(finalStatsPos + ' > td:nth-child(2)').text().substring(8),
-                    "avgScore": $(finalStatsPos + ' > td:nth-child(3)').text().substring(7),
-                    "ranking": $(finalStatsPos + ' > td:nth-child(4)').text().substring(7)
+                    // eq(0)為網頁最上方的"部別"
+                    "allCredits": $('td[width="25%"]').eq(1).text().substring(9),
+                    "earnedCredits": $('td[width="25%"]').eq(2).text().substring(8),
+                    "avgScore": $('td[width="25%"]').eq(3).text().substring(7),
+                    "ranking": $('td[width="25%"]').eq(4).text().substring(7)
                 };
 
                 /* 最終要送出的json */
