@@ -248,10 +248,8 @@ svg {
 .currScore circle {
     stroke-width: 25px;
     stroke: url(#GradientColor1);
-    stroke-dasharray: 314;
-    stroke-dashoffset: 50;
+    stroke-dashoffset: 78.5;
     fill: none;
-    animation: anime 3s linear forwards;
 }
 
 .curr {
@@ -285,14 +283,16 @@ svg {
 .totalScore circle {
     stroke-width: 25px;
     stroke: url(#GradientColor3);
-    stroke-dasharray: 314;
-    stroke-dashoffset: 50;
     fill: none;
-    animation: anime 1.5s linear forwards;
+    stroke-dashoffset: 78.5;
 }
 
 @keyframes anime {
-    100% {
+    0%{
         stroke-dashoffset: 0;
+        stroke-dasharray: 0;
+    }
+    100% {
+        stroke-dashoffset: 78.5;
     }
 }

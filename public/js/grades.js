@@ -7,15 +7,22 @@ let boolSemester = false;
 let term = document.getElementById('Term');
 let semester = document.getElementById('Semester');
 let courseTable = document.getElementById('courseTable');
+let curCredit = document.getElementById('currNumber');
+let totalCredit = document.getElementById('goalNumber');
+let creditAcq = document.getElementById('totalNumber');
+let creditAll = document.getElementById('totalNumber1');
+let curScore = document.querySelector('.currScore');
+let totalScore = document.querySelector('.totalScore');
+curScore.style.display = "none";
+totalScore.style.display = "none";
 let res = null;
-axios.get('http://localhost:3000/api/grades', {
-        params: {
+axios.post('https://my-nuk-api.herokuapp.com/api/grades', {
             id: loginId,
             pwd: loginPwd
-        }
     })
     .then(function (response) {
         if (response.request.readyState === 4 && response.status === 200) {
+            alert('載入成功!');
             res = response.data;
         } else {
             alert('Error: With Internet Problem');
@@ -41,6 +48,7 @@ function getData() {
             courseTable.innerHTML = null; //清空Table
             showTitle(); //Table加上標題
             showData(search_index); //Table加上查詢內容
+            showGraph(search_index);
         } else
             alert('Error: Wrong information.')
     }
@@ -51,6 +59,49 @@ for (let i = admission; i < admission + 5; i++) {
     option.setAttribute('value', i);
     option.textContent = i;
     semester.appendChild(option);
+}
+
+function showGraph(search_index){
+    drawPic_semester(res.grades[search_index].stats.earnedCredits,res.grades[search_index].stats.allCredits);
+    drawPic_total(res.stats.earnedCredits,res.stats.allCredits);
+}
+
+function drawPic_total(cur,total){
+    totalScore.style.display = "block";
+    let temp_cur = 0;
+    let temp_total = 0;
+    let timer = window.setInterval(count,45);
+    function count(){
+        creditAcq.textContent = temp_cur;
+        creditAll.textContent = temp_total;
+        if(temp_cur < cur)
+            temp_cur++;
+        if(temp_total < total)
+            temp_total++;
+        let totalPercent = temp_cur / total;
+        totalScore.style.strokeDasharray = String(totalPercent*314) + ',' + String(314-totalPercent*314);
+        if(temp_cur==cur && temp_total==total)
+            clearInterval(timer);
+    }
+}
+
+function drawPic_semester(cur,total){
+    curScore.style.display = "block";
+    let temp_cur = 0;
+    let temp_total = 0;
+    let timer = window.setInterval(count,45);
+    function count(){
+        curCredit.textContent = temp_cur;
+        totalCredit.textContent = temp_total;
+        if(temp_cur < cur)
+            temp_cur++;
+        if(temp_total < total)
+            temp_total++;
+        let curPercent = temp_cur / total;
+        curScore.style.strokeDasharray = String(curPercent*314) + ',' + String(314-curPercent*314);
+        if(temp_cur==cur && temp_total==total)
+            clearInterval(timer);
+    }
 }
 
 function showData(search_index) {
@@ -91,26 +142,3 @@ function showTitle() {
     thead.setAttribute('class', 'table-dark');
     courseTable.appendChild(thead);
 }
-
-let currNumber = document.getElementById("currNumber");
-let currCounter = 0;
-let goalNumber = document.getElementById("goalNumber");
-let totalNumber = document.getElementById("totalNumber");
-let totalCounter = 0;
-setInterval(() => {
-    if (currCounter == 80) {
-        clearInterval();
-    } else {
-        currCounter += 1;
-    }
-
-}, 50);
-setInterval(() => {
-    if (totalCounter == 80) {
-        clearInterval();
-    } else {
-        totalCounter += 1;
-        totalNumber.innerHTML = totalCounter;
-    }
-
-}, 20);
