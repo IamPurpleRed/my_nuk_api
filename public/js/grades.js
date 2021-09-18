@@ -13,6 +13,7 @@ let creditAcq = document.getElementById('totalNumber');
 let creditAll = document.getElementById('totalNumber1');
 let curScore = document.querySelector('.currScore');
 let totalScore = document.querySelector('.totalScore');
+let loading = document.querySelector('.Load');
 curScore.style.display = "none";
 totalScore.style.display = "none";
 let res = null;
@@ -22,7 +23,8 @@ axios.post('https://my-nuk-api.herokuapp.com/api/grades', {
     })
     .then(function (response) {
         if (response.request.readyState === 4 && response.status === 200) {
-            alert('載入成功!');
+            let parentObj = loading.parentNode;
+            parentObj.removeChild(loading);                 //刪除loading畫面
             res = response.data;
         } else {
             alert('Error: With Internet Problem');
@@ -43,6 +45,8 @@ function changeSemester() {
 
 function getData() {
     if (boolSemester && boolTerm) {
+        curScore.style.display = "none";
+        totalScore.style.display = "none";
         let search_index = 2 * (Number(semester.value) - admission) + Number(term.value) - 1;
         if (res.grades[search_index] != undefined) {
             courseTable.innerHTML = null; //清空Table
@@ -67,17 +71,30 @@ function showGraph(search_index){
 }
 
 function drawPic_total(cur,total){
+    let times = 0;              //轉速
+    if(total > 100)
+        times = 2;
+    else if(total > 75)
+        times = 4;
+    else if(total > 50)
+        times = 6;
+    else if(total > 25)
+        times = 8;
+    else
+        times = 10;
     totalScore.style.display = "block";
+    creditAll.textContent = total;
     let temp_cur = 0;
     let temp_total = 0;
-    let timer = window.setInterval(count,45);
+    let timer = window.setInterval(count,750/total);
+    cur = cur*times;
+    total = total*times;
     function count(){
-        creditAcq.textContent = temp_cur;
-        creditAll.textContent = temp_total;
         if(temp_cur < cur)
             temp_cur++;
         if(temp_total < total)
             temp_total++;
+        creditAcq.textContent = parseInt(temp_cur/times);
         let totalPercent = temp_cur / total;
         totalScore.style.strokeDasharray = String(totalPercent*314) + ',' + String(314-totalPercent*314);
         if(temp_cur==cur && temp_total==total)
@@ -86,17 +103,20 @@ function drawPic_total(cur,total){
 }
 
 function drawPic_semester(cur,total){
+    totalCredit.textContent = total;
     curScore.style.display = "block";
     let temp_cur = 0;
     let temp_total = 0;
-    let timer = window.setInterval(count,45);
+    let timer = window.setInterval(count,750/total);
+    let times = 4;                  //轉速
+    cur = cur*times;
+    total = total*times;
     function count(){
-        curCredit.textContent = temp_cur;
-        totalCredit.textContent = temp_total;
         if(temp_cur < cur)
             temp_cur++;
         if(temp_total < total)
             temp_total++;
+        curCredit.textContent = parseInt(temp_cur/times);
         let curPercent = temp_cur / total;
         curScore.style.strokeDasharray = String(curPercent*314) + ',' + String(314-curPercent*314);
         if(temp_cur==cur && temp_total==total)
