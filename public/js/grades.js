@@ -16,6 +16,8 @@ let totalScore = document.querySelector('.totalScore');
 let loading = document.querySelector('.Load');
 curScore.style.display = "none";
 totalScore.style.display = "none";
+semester.disabled = true;
+term.disabled = true;
 let res = null;
 axios.post('https://my-nuk-api.herokuapp.com/api/grades', {
             id: loginId,
@@ -25,6 +27,8 @@ axios.post('https://my-nuk-api.herokuapp.com/api/grades', {
         if (response.request.readyState === 4 && response.status === 200) {
             let parentObj = loading.parentNode;
             parentObj.removeChild(loading);                 //刪除loading畫面
+            semester.disabled = false;
+            term.disabled = false;
             res = response.data;
         } else {
             alert('Error: With Internet Problem');
