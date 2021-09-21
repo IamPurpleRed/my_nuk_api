@@ -100,11 +100,13 @@ router.post('/', (req, res) => {
                 '二': 2,
                 '三': 3,
                 '四': 4,
-                '五': 5
+                '五': 5,
+                '六': 7,
+                '日': 7
             };
             let result = Object();
             let arr3D = new Array();
-            for (let i = 1; i < 6; i++) {
+            for (let i = 1; i < 8; i++) {
                 arr3D[i] = new Array();
                 for (let j = 0; j < 4; j++) {
                     arr3D[i][j] = new Array();
@@ -117,6 +119,16 @@ router.post('/', (req, res) => {
                 let day = dictionary[data[i][2][0]];
                 let courseNum =  data[i][2].split(data[i][2][0]);
                 courseNum.shift();
+                for (let a in courseNum) {
+                    if (courseNum[a] != 'X' && courseNum[a] != 'Y')
+                        courseNum[a] = Number(courseNum[a]);
+                    if (courseNum[a] > 4)
+                        courseNum[a]++;
+                    if (courseNum[a] == 'X')
+                        courseNum[a] = 0;
+                    else if (courseNum[a] == 'Y')
+                        courseNum[a] = 5;
+                }
                 let courseCode = data[i][0];
                 let courseName = data[i][1];
                 let classroom = dic[data[i][3].split(',')[0].slice(0,3)] + data[i][3].split(',')[0].slice(4);
@@ -133,6 +145,8 @@ router.post('/', (req, res) => {
             result['3'] = arr3D[3];
             result['4'] = arr3D[4];
             result['5'] = arr3D[5];
+            result['6'] = arr3D[6];
+            result['7'] = arr3D[7];
             return result;
         }
     }
@@ -209,7 +223,7 @@ router.post('/', (req, res) => {
         function formatData(data) {
             let result = Object();
             let arr3D = new Array();
-            for (let i = 1; i < 6; i++) {
+            for (let i = 1; i < 8; i++) {
                 arr3D[i] = new Array();
                 for (let j = 0; j < 4; j++) {
                     arr3D[i][j] = new Array();
@@ -253,7 +267,8 @@ router.post('/', (req, res) => {
             result['3'] = arr3D[3];
             result['4'] = arr3D[4];
             result['5'] = arr3D[5];
-            
+            result['6'] = arr3D[6];
+            result['7'] = arr3D[7];
             return result;
         }
     } else {
