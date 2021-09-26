@@ -211,24 +211,6 @@ svg {
     color: rgb(218, 24, 56);
 }
 
-.totalScore circle {
-    stroke-width: 25px;
-    stroke: url(#GradientColor3);
-    fill: none;
-    stroke-dashoffset: 78.5;
-}
-
-@keyframes anime {
-    0% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 0;
-    }
-
-    100% {
-        stroke-dashoffset: 78.5;
-    }
-}
-
 /*------------------------------------*/
 
 
@@ -283,4 +265,57 @@ svg {
     100% {
         transform: scale(0);
     }
+}
+
+/*------------------------------------*/
+
+.totalData {
+    display: flex;
+    flex-direction: column;
+}
+
+.totalData h6 {
+    color: #183168;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: "源泉圓體";
+    border-bottom: 1px dashed #183168;
+}
+
+.rank,
+.avg,
+.credit {
+    color: #5d7097;
+    font-size: 26px;
+    font-weight: 900;
+    font-family: "源泉圓體";
+    text-decoration: underline;
+
+}
+
+.totalRank {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    background-color: #cfd9df;
+}
+
+.avgScore {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    background-color: #ebedee;
+}
+
+.totalCredit {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    background-color: #e2ebf0;
 }

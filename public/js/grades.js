@@ -12,21 +12,19 @@ let totalCredit = document.getElementById('goalNumber');
 let creditAcq = document.getElementById('totalNumber');
 let creditAll = document.getElementById('totalNumber1');
 let curScore = document.querySelector('.currScore');
-let totalScore = document.querySelector('.totalScore');
 let loading = document.querySelector('.Load');
 curScore.style.display = "none";
-totalScore.style.display = "none";
 semester.disabled = true;
 term.disabled = true;
 let res = null;
 axios.post('https://my-nuk-api.herokuapp.com/api/grades', {
-            id: loginId,
-            pwd: loginPwd
+        id: loginId,
+        pwd: loginPwd
     })
     .then(function (response) {
         if (response.request.readyState === 4 && response.status === 200) {
             let parentObj = loading.parentNode;
-            parentObj.removeChild(loading);                 //刪除loading畫面
+            parentObj.removeChild(loading); //刪除loading畫面
             semester.disabled = false;
             term.disabled = false;
             res = response.data;
@@ -69,20 +67,20 @@ for (let i = admission; i < admission + 5; i++) {
     semester.appendChild(option);
 }
 
-function showGraph(search_index){
-    drawPic_semester(res.grades[search_index].stats.earnedCredits,res.grades[search_index].stats.allCredits);
-    drawPic_total(res.stats.earnedCredits,res.stats.allCredits);
+function showGraph(search_index) {
+    drawPic_semester(res.grades[search_index].stats.earnedCredits, res.grades[search_index].stats.allCredits);
+    drawPic_total(res.stats.earnedCredits, res.stats.allCredits);
 }
 
-function drawPic_total(cur,total){
-    let times = 0;              //轉速
-    if(total > 100)
+function drawPic_total(cur, total) {
+    let times = 0; //轉速
+    if (total > 100)
         times = 2;
-    else if(total > 75)
+    else if (total > 75)
         times = 4;
-    else if(total > 50)
+    else if (total > 50)
         times = 6;
-    else if(total > 25)
+    else if (total > 25)
         times = 8;
     else
         times = 10;
@@ -90,40 +88,42 @@ function drawPic_total(cur,total){
     creditAll.textContent = total;
     let temp_cur = 0;
     let temp_total = 0;
-    let timer = window.setInterval(count,750/total);
-    cur = cur*times;
-    total = total*times;
-    function count(){
-        if(temp_cur < cur)
+    let timer = window.setInterval(count, 750 / total);
+    cur = cur * times;
+    total = total * times;
+
+    function count() {
+        if (temp_cur < cur)
             temp_cur++;
-        if(temp_total < total)
+        if (temp_total < total)
             temp_total++;
-        creditAcq.textContent = parseInt(temp_cur/times);
+        creditAcq.textContent = parseInt(temp_cur / times);
         let totalPercent = temp_cur / total;
-        totalScore.style.strokeDasharray = String(totalPercent*314) + ',' + String(314-totalPercent*314);
-        if(temp_cur==cur && temp_total==total)
+        totalScore.style.strokeDasharray = String(totalPercent * 314) + ',' + String(314 - totalPercent * 314);
+        if (temp_cur == cur && temp_total == total)
             clearInterval(timer);
     }
 }
 
-function drawPic_semester(cur,total){
+function drawPic_semester(cur, total) {
     totalCredit.textContent = total;
     curScore.style.display = "block";
     let temp_cur = 0;
     let temp_total = 0;
-    let timer = window.setInterval(count,750/total);
-    let times = 4;                  //轉速
-    cur = cur*times;
-    total = total*times;
-    function count(){
-        if(temp_cur < cur)
+    let timer = window.setInterval(count, 750 / total);
+    let times = 4; //轉速
+    cur = cur * times;
+    total = total * times;
+
+    function count() {
+        if (temp_cur < cur)
             temp_cur++;
-        if(temp_total < total)
+        if (temp_total < total)
             temp_total++;
-        curCredit.textContent = parseInt(temp_cur/times);
+        curCredit.textContent = parseInt(temp_cur / times);
         let curPercent = temp_cur / total;
-        curScore.style.strokeDasharray = String(curPercent*314) + ',' + String(314-curPercent*314);
-        if(temp_cur==cur && temp_total==total)
+        curScore.style.strokeDasharray = String(curPercent * 314) + ',' + String(314 - curPercent * 314);
+        if (temp_cur == cur && temp_total == total)
             clearInterval(timer);
     }
 }
