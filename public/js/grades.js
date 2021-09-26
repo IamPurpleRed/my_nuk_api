@@ -9,10 +9,10 @@ let semester = document.getElementById('Semester');
 let courseTable = document.getElementById('courseTable');
 let curCredit = document.getElementById('currNumber');
 let totalCredit = document.getElementById('goalNumber');
-let creditAcq = document.getElementById('totalNumber');
-let creditAll = document.getElementById('totalNumber1');
 let curScore = document.querySelector('.currScore');
 let loading = document.querySelector('.Load');
+let totalData = document.querySelector('.totalData');
+totalData.style.display = "none";
 curScore.style.display = "none";
 semester.disabled = true;
 term.disabled = true;
@@ -42,13 +42,32 @@ function changeTerm() {
 
 function changeSemester() {
     boolSemester = true;
-    getData();
+    if(this.value == 'total'){
+        term.disabled = true;
+        showTotal();
+    } else{
+        term.disabled = false;
+        totalData.style.display = "none";
+        getData();
+    }       
+}
+
+function showTotal(){
+    curScore.style.display = "none";
+    totalData.style.display = 'block';
+    let tb = document.getElementById('tb');
+    courseTable.innerHTML = null; //清空Table
+    let rank = document.getElementById('rank');
+    let avg = document.getElementById('avg');
+    let credit = document.getElementById('credit');
+    rank.textContent = res.stats.ranking;
+    avg.textContent = res.stats.avgScore;
+    credit.textContent = res.stats.earnedCredits;
 }
 
 function getData() {
     if (boolSemester && boolTerm) {
         curScore.style.display = "none";
-        totalScore.style.display = "none";
         let search_index = 2 * (Number(semester.value) - admission) + Number(term.value) - 1;
         if (res.grades[search_index] != undefined) {
             courseTable.innerHTML = null; //清空Table
@@ -66,52 +85,22 @@ for (let i = admission; i < admission + 5; i++) {
     option.textContent = i;
     semester.appendChild(option);
 }
+let option = document.createElement('option');
+option.setAttribute('value','total');
+option.textContent = '總成績';
+semester.appendChild(option);
+
 
 function showGraph(search_index) {
     drawPic_semester(res.grades[search_index].stats.earnedCredits, res.grades[search_index].stats.allCredits);
-    drawPic_total(res.stats.earnedCredits, res.stats.allCredits);
 }
-
-function drawPic_total(cur, total) {
-    let times = 0; //轉速
-    if (total > 100)
-        times = 2;
-    else if (total > 75)
-        times = 4;
-    else if (total > 50)
-        times = 6;
-    else if (total > 25)
-        times = 8;
-    else
-        times = 10;
-    totalScore.style.display = "block";
-    creditAll.textContent = total;
-    let temp_cur = 0;
-    let temp_total = 0;
-    let timer = window.setInterval(count, 750 / total);
-    cur = cur * times;
-    total = total * times;
-
-    function count() {
-        if (temp_cur < cur)
-            temp_cur++;
-        if (temp_total < total)
-            temp_total++;
-        creditAcq.textContent = parseInt(temp_cur / times);
-        let totalPercent = temp_cur / total;
-        totalScore.style.strokeDasharray = String(totalPercent * 314) + ',' + String(314 - totalPercent * 314);
-        if (temp_cur == cur && temp_total == total)
-            clearInterval(timer);
-    }
-}
-
 function drawPic_semester(cur, total) {
     totalCredit.textContent = total;
     curScore.style.display = "block";
     let temp_cur = 0;
     let temp_total = 0;
-    let timer = window.setInterval(count, 750 / total);
-    let times = 4; //轉速
+    let timer = window.setInterval(count, 8);
+    let times = 10; //轉速
     cur = cur * times;
     total = total * times;
 
