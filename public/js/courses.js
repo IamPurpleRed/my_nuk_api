@@ -16,6 +16,8 @@ function tran() {
     if (isWeekDay) {
         weekdays.style.opacity = 0;
         weekdays_title.style.opacity = 0;
+        weekdays.style.display = "none";
+        weekdays_title.style.display = "none";
         weekends.style.opacity = 1;
         weekends_title.style.opacity = 1;
         weekends_title.style.zIndex = 5;
@@ -23,6 +25,8 @@ function tran() {
     } else {
         weekdays.style.opacity = 1;
         weekdays_title.style.opacity = 1;
+        weekdays.style.display = "table-cell";
+        weekdays_title.style.display = "table-cell";
         weekends.style.opacity = 0;
         weekends_title.style.opacity = 0;
         weekends_title.style.zIndex = 3;
