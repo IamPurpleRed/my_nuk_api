@@ -255,7 +255,7 @@ td {
   left: 0;
   width: 100%;
   height: 100%;
-  transform: rotate(calc(18deg * var(--i)));
+  transform: rotate(calc(24deg * var(--i)));
 }
 
 .loading span::before {
