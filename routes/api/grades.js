@@ -60,9 +60,9 @@ router.post('/', (req, res) => {
             
                 /* 學生所有學期成績 迴圈會跑該學生所就讀的學期次 */
                 let grades = [];
-                for (let i = 1; i <= $('font:contains("學期")').length; i++) {
+                for (let i = 1; i <= $('font[color="#0000FF"]').length; i++) {
                     /* semester */
-                    let semesterStr = $('font:contains("學期"):eq(' + (i - 1) + ')').text();
+                    let semesterStr = $('font[color="#0000FF"]:eq(' + (i - 1) + ')').text();
                     let semester = [parseInt(semesterStr.slice(0, 3)), parseInt(semesterStr.slice(8, 9))];  // [學年度, 學期]
 
                     /* subjects */
