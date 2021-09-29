@@ -115,6 +115,20 @@ body {
     width: 60px;
 }
 
+/*--------------------------------------------------------*/
+.semesterRank {
+    width: 200px;
+    margin: 0 auto;
+    background-color: #cfd9df;
+    border-radius: 30px;
+}
+
+.semesterRank h4 {
+    padding: 3px 0px;
+    font-weight: bold;
+    font-family: "源泉圓體";
+    color: #5d7097;
+}
 
 /*--------------------------------------------------------*/
 .score {
