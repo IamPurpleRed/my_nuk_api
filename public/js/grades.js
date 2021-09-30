@@ -12,6 +12,11 @@ let totalCredit = document.getElementById('goalNumber');
 let curScore = document.querySelector('.currScore');
 let loading = document.querySelector('.Load');
 let totalData = document.querySelector('.totalData');
+let semesterRank = document.getElementById('semesterRank');
+let semesterScore = document.querySelector('.semesterScore');
+let currSemester = document.getElementById('currSemester');
+semesterScore.style.display = "none";
+semesterRank.style.display = "none";
 totalData.style.display = "none";
 curScore.style.display = "none";
 semester.disabled = true;
@@ -28,6 +33,8 @@ axios.post('https://my-nuk-api.herokuapp.com/api/grades', {
             semester.disabled = false;
             term.disabled = false;
             res = response.data;
+            console.log(res);
+            generateSelection();
         } else {
             alert('Error: With Internet Problem');
         }
@@ -47,12 +54,13 @@ function changeSemester() {
         showTotal();
     } else{
         term.disabled = false;
-        totalData.style.display = "none";
         getData();
     }       
 }
 
 function showTotal(){
+    semesterRank.style.display = "none";
+    semesterScore.style.display = "none";
     curScore.style.display = "none";
     totalData.style.display = 'block';
     let tb = document.getElementById('tb');
@@ -66,8 +74,11 @@ function showTotal(){
 }
 
 function getData() {
+    totalData.style.display = "none";
     if (boolSemester && boolTerm) {
         curScore.style.display = "none";
+        semesterScore.style.display = "none";
+        semesterRank.style.display = "none";
         let search_index = 2 * (Number(semester.value) - admission) + Number(term.value) - 1;
         if (res.grades[search_index] != undefined) {
             courseTable.innerHTML = null; //清空Table
@@ -79,45 +90,71 @@ function getData() {
     }
 };
 //動態產生年度選項
-for (let i = admission; i < admission + 5; i++) {
+function generateSelection(){
+    let semesterNum = res.grades.length;
+    let judge = semesterNum % 2;
+    for (let i = admission; i < admission + Math.ceil(semesterNum/2); i++) {
+        let option = document.createElement('option');
+        option.setAttribute('value', i);
+        option.textContent = i;
+        semester.appendChild(option);
+    }
+    
     let option = document.createElement('option');
-    option.setAttribute('value', i);
-    option.textContent = i;
+    option.setAttribute('value','total');
+    option.textContent = '總成績';
     semester.appendChild(option);
 }
-let option = document.createElement('option');
-option.setAttribute('value','total');
-option.textContent = '總成績';
-semester.appendChild(option);
-
-
 function showGraph(search_index) {
     drawPic_semester(res.grades[search_index].stats.earnedCredits, res.grades[search_index].stats.allCredits);
+    drawPic_Avg(res.grades[search_index].stats.avgScore,100);
 }
+
+function drawPic_Avg(cur,total){
+    semesterScore.style.display = "block";
+    semesterRank.style.display = "block";
+    if(cur == ""){
+        semesterScore.style.strokeDasharray = '0,340';
+        return;
+    }
+    let temp_cur = 0;
+    let timer = window.setInterval(count, 8);
+    let times = 3; //轉速
+    cur = cur * times;
+    total = total * times;
+    function count(){
+        if (temp_cur < cur)
+            temp_cur++;
+        let curPercent = temp_cur / total;
+        semesterScore.style.strokeDasharray = String(curPercent * 314) + ',' + String(314 - curPercent * 314);
+        if (temp_cur > cur)
+            clearInterval(timer);
+    }
+}
+
 function drawPic_semester(cur, total) {
     totalCredit.textContent = total;
     curScore.style.display = "block";
     let temp_cur = 0;
-    let temp_total = 0;
     let timer = window.setInterval(count, 8);
     let times = 10; //轉速
     cur = cur * times;
     total = total * times;
 
-    function count() {
+    function count(){
         if (temp_cur < cur)
             temp_cur++;
-        if (temp_total < total)
-            temp_total++;
         curCredit.textContent = parseInt(temp_cur / times);
         let curPercent = temp_cur / total;
         curScore.style.strokeDasharray = String(curPercent * 314) + ',' + String(314 - curPercent * 314);
-        if (temp_cur == cur && temp_total == total)
+        if (temp_cur == cur)
             clearInterval(timer);
     }
 }
 
 function showData(search_index) {
+    currSemester.textContent = res.grades[search_index].stats.avgScore;
+    semesterRank.innerHTML = '<h4>系排 : <span>'+ res.grades[search_index].stats.ranking +'</span></h4>';
     let course = res.grades[search_index].subjects;
     let courseNum = res.grades[search_index].subjects.length;
     let tbody = document.createElement('tbody');
